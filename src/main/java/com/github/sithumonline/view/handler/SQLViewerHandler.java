@@ -16,7 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
-    private UserBOImpl userBO;
+
+    private final UserBOImpl userBO = new UserBOImpl();
 
     @FXML
     private TextField txt_username;

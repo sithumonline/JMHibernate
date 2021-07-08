@@ -11,7 +11,7 @@ public class HibernateUtil {
     static {
         try {
             sessionFactory = new Configuration().configure(
-                    "/config/hibernate.cfg.xml"
+                    HibernateUtil.class.getClassLoader().getResource("schema.xmls")
             ).buildSessionFactory();
         }catch (HibernateException e){
             e.printStackTrace();
