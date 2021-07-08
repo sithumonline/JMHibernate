@@ -1,7 +1,8 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.business.custom.impl.UserBOImpl;
-import com.github.sithumonline.model.User;
+import com.github.sithumonline.entity.Users;
+//import com.github.sithumonline.model.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,21 +29,21 @@ public class SQLViewerHandler implements Initializable {
     @FXML
     private Label lab_info;
     @FXML
-    private TableView<User> tab_user;
+    private TableView<Users> tab_user;
     @FXML
-    private TableColumn<User, Integer> tab_userid;
+    private TableColumn<Users, Integer> tab_userid;
     @FXML
-    private TableColumn<User, String> tab_username;
+    private TableColumn<Users, String> tab_username;
     @FXML
-    private TableColumn<User, String> tab_password;
+    private TableColumn<Users, String> tab_password;
     @FXML
-    private TableColumn<User, String> tab_fullname;
+    private TableColumn<Users, String> tab_fullname;
     @FXML
-    private TableColumn<User, String> tab_email;
+    private TableColumn<Users, String> tab_email;
 
     public void pressInsert() throws Exception {
         if (!(txt_username.getText().isEmpty() && txt_password.getText().isEmpty() && txt_fullname.getText().isEmpty() && txt_email.getText().isEmpty())) {
-            User user = new User(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
+            Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
 //            SQLViewerController.addUser(user);
             userBO.addUser(user);
             lab_info.setText("TextField added");
@@ -65,7 +66,7 @@ public class SQLViewerHandler implements Initializable {
 
     public void pressUpdate() throws Exception {
         if (!(txt_username.getText().isEmpty() || txt_password.getText().isEmpty() || txt_fullname.getText().isEmpty() || txt_email.getText().isEmpty())) {
-            User user = new User(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
+            Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
 //            SQLViewerController.updateUser(user);
             userBO.updateUser(user);
             lab_info.setText("TextField updated");
@@ -93,7 +94,7 @@ public class SQLViewerHandler implements Initializable {
 
     public void showUser() throws Exception {
 //        ObservableList<User> list = SQLViewerController.getUserList();
-        ObservableList<User> list = userBO.getAllUsers();
+        ObservableList<Users> list = userBO.getAllUsers();
 
         tab_userid.setCellValueFactory(new PropertyValueFactory<>("user_id"));
         tab_username.setCellValueFactory(new PropertyValueFactory<>("username"));

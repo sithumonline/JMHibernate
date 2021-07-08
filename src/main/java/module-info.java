@@ -8,7 +8,7 @@ module com.github.sithumonline {
 
     opens com.github.sithumonline to javafx.fxml;
     opens com.github.sithumonline.view.handler to javafx.fxml;
-    opens com.github.sithumonline.model to javafx.base;
+//    opens com.github.sithumonline.model to javafx.base;
     exports com.github.sithumonline;
     exports com.github.sithumonline.view.handler;
 }

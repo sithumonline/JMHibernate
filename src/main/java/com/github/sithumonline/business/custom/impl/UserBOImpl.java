@@ -1,7 +1,7 @@
 package com.github.sithumonline.business.custom.impl;
 
 import com.github.sithumonline.entity.Users;
-import com.github.sithumonline.model.User;
+//import com.github.sithumonline.model.User;
 import com.github.sithumonline.business.custom.UserBO;
 import com.github.sithumonline.repository.RepositoryFactory;
 import com.github.sithumonline.repository.custom.UserRepository;
@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 public class UserBOImpl implements UserBO {
@@ -23,7 +23,7 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public boolean addUser(User userDTO) throws Exception {
+    public boolean addUser(Users userDTO) throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             userRepository.setSession(session);
@@ -42,7 +42,7 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public boolean updateUser(User userDTO) throws Exception {
+    public boolean updateUser(Users userDTO) throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             userRepository.setSession(session);
@@ -76,14 +76,14 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public User getUserById(String userId) throws Exception {
+    public Users getUserById(String userId) throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             userRepository.setSession(session);
             Users user = userRepository.findById(userId);
             session.getTransaction().commit();
             if (user != null){
-                return new User(
+                return new Users(
                         user.getUsername(),
                         user.getPassword(),
                         user.getFullname(),
@@ -96,7 +96,7 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public ObservableList<User> getAllUsers() throws Exception {
+    public ObservableList<Users> getAllUsers() throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             userRepository.setSession(session);
@@ -104,11 +104,11 @@ public class UserBOImpl implements UserBO {
             session.getTransaction().commit();
 
             if (userList != null){
-                ObservableList<User> userDTOList = FXCollections.observableArrayList();
+                ObservableList<Users> userDTOList = FXCollections.observableArrayList();
                 for (Users user: userList
                      ) {
                     userDTOList.add(
-                            new User(
+                            new Users(
                                     user.getUsername(),
                                     user.getPassword(),
                                     user.getFullname(),
