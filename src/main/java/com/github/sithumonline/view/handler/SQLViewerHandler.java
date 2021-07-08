@@ -1,6 +1,6 @@
 package com.github.sithumonline.view.handler;
 
-import com.github.sithumonline.controller.SQLViewerController;
+import com.github.sithumonline.business.custom.impl.UserBOImpl;
 import com.github.sithumonline.model.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
+    private UserBOImpl userBO;
+
     @FXML
     private TextField txt_username;
     @FXML
@@ -39,10 +40,11 @@ public class SQLViewerHandler implements Initializable {
     @FXML
     private TableColumn<User, String> tab_email;
 
-    public void pressInsert() throws SQLException {
+    public void pressInsert() throws Exception {
         if (!(txt_username.getText().isEmpty() && txt_password.getText().isEmpty() && txt_fullname.getText().isEmpty() && txt_email.getText().isEmpty())) {
             User user = new User(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
-            SQLViewerController.addUser(user);
+//            SQLViewerController.addUser(user);
+            userBO.addUser(user);
             lab_info.setText("TextField added");
             showUser();
         } else {
@@ -50,9 +52,10 @@ public class SQLViewerHandler implements Initializable {
         }
     }
 
-    public void pressDelete() throws SQLException {
+    public void pressDelete() throws Exception {
         if (!txt_username.getText().isEmpty()) {
-            SQLViewerController.deleteUser(txt_username.getText());
+//            SQLViewerController.deleteUser(txt_username.getText());
+            userBO.deleteUser(txt_username.getText());
             lab_info.setText("TextField deleted");
             showUser();
         } else {
@@ -60,10 +63,11 @@ public class SQLViewerHandler implements Initializable {
         }
     }
 
-    public void pressUpdate() throws SQLException {
+    public void pressUpdate() throws Exception {
         if (!(txt_username.getText().isEmpty() || txt_password.getText().isEmpty() || txt_fullname.getText().isEmpty() || txt_email.getText().isEmpty())) {
             User user = new User(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
-            SQLViewerController.updateUser(user);
+//            SQLViewerController.updateUser(user);
+            userBO.updateUser(user);
             lab_info.setText("TextField updated");
             showUser();
         } else {
@@ -80,11 +84,16 @@ public class SQLViewerHandler implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showUser();
+        try {
+            showUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void showUser() {
-        ObservableList<User> list = SQLViewerController.getUserList();
+    public void showUser() throws Exception {
+//        ObservableList<User> list = SQLViewerController.getUserList();
+        ObservableList<User> list = userBO.getAllUsers();
 
         tab_userid.setCellValueFactory(new PropertyValueFactory<>("user_id"));
         tab_username.setCellValueFactory(new PropertyValueFactory<>("username"));
