@@ -1,4 +1,4 @@
-package com.github.sithumonline.handler;
+package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.controller.SQLViewerController;
 import com.github.sithumonline.model.User;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" minHeight="250.0" minWidth="960.0" prefHeight="250.0" prefWidth="960.0" vgap="10" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.handler.SQLViewerHandler">
+<GridPane alignment="center" hgap="10" minHeight="250.0" minWidth="960.0" prefHeight="250.0" prefWidth="960.0" vgap="10" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.SQLViewerHandler">
 <children>
       <GridPane>
          <children>
