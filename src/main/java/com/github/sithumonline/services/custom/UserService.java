@@ -4,7 +4,7 @@ import com.github.sithumonline.entity.Users;
 import com.github.sithumonline.services.SuperService;
 import javafx.collections.ObservableList;
 
-import java.util.List;
+//import java.util.List;
 
 public interface UserService extends SuperService{
 
