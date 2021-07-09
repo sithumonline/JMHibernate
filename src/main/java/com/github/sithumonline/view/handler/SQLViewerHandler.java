@@ -1,6 +1,5 @@
 package com.github.sithumonline.view.handler;
 
-import com.github.sithumonline.business.custom.UserBO;
 import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;

@@ -5,7 +5,6 @@ import java.util.Objects;
 
 @Entity
 public class Users {
-//    private Long id;
     private int userId;
     private String username;
     private String password;
@@ -30,16 +29,6 @@ public class Users {
     public Users() {
 
     }
-
-//    @Id
-//    @GeneratedValue
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     @Id
     @Column(name = "user_id")
