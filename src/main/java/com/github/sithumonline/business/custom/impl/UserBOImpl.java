@@ -1,7 +1,6 @@
 package com.github.sithumonline.business.custom.impl;
 
 import com.github.sithumonline.entity.Users;
-//import com.github.sithumonline.model.User;
 import com.github.sithumonline.business.custom.UserBO;
 import com.github.sithumonline.repository.RepositoryFactory;
 import com.github.sithumonline.repository.custom.UserRepository;
@@ -10,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 
-//import java.util.ArrayList;
 import java.util.List;
 
 public class UserBOImpl implements UserBO {

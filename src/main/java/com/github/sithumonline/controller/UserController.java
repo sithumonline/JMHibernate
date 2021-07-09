@@ -3,7 +3,6 @@ package com.github.sithumonline.controller;
 import com.github.sithumonline.business.BOFactory;
 import com.github.sithumonline.business.custom.UserBO;
 import com.github.sithumonline.entity.Users;
-//import com.github.sithumonline.services.custom.UserService;
 import javafx.collections.ObservableList;
 
 public class UserController {

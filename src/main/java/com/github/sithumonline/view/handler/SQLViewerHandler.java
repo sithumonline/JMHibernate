@@ -3,7 +3,6 @@ package com.github.sithumonline.view.handler;
 import com.github.sithumonline.business.custom.UserBO;
 import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Users;
-//import com.github.sithumonline.model.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,12 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
-
-    private UserBO userBO;
-//    private final UserBO userBO = new UserBOImpl();
-//private UserBOImpl userBO;
-//    private final UserBO userBO = new UserBOImpl();
-
     @FXML
     private TextField txt_username;
     @FXML
@@ -49,8 +42,6 @@ public class SQLViewerHandler implements Initializable {
     public void pressInsert() throws Exception {
         if (!(txt_username.getText().isEmpty() && txt_password.getText().isEmpty() && txt_fullname.getText().isEmpty() && txt_email.getText().isEmpty())) {
             Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
-//            SQLViewerController.addUser(user);
-//            userBO.addUser(user);
             UserController.addUser(user);
             lab_info.setText("TextField added");
             showUser();
@@ -61,8 +52,6 @@ public class SQLViewerHandler implements Initializable {
 
     public void pressDelete() throws Exception {
         if (!txt_username.getText().isEmpty()) {
-//            SQLViewerController.deleteUser(txt_username.getText());
-//            userBO.deleteUser(txt_username.getText());
             UserController.deleteUser(txt_username.getText());
             lab_info.setText("TextField deleted");
             showUser();
@@ -74,8 +63,6 @@ public class SQLViewerHandler implements Initializable {
     public void pressUpdate() throws Exception {
         if (!(txt_username.getText().isEmpty() || txt_password.getText().isEmpty() || txt_fullname.getText().isEmpty() || txt_email.getText().isEmpty())) {
             Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
-//            SQLViewerController.updateUser(user);
-//            userBO.updateUser(user);
             UserController.updateUser(user);
             lab_info.setText("TextField updated");
             showUser();
@@ -101,8 +88,6 @@ public class SQLViewerHandler implements Initializable {
     }
 
     public void showUser() throws Exception {
-//        ObservableList<User> list = SQLViewerController.getUserList();
-//        ObservableList<Users> list = userBO.getAllUsers();
         ObservableList<Users> list = UserController.getUserList();
 
         tab_userid.setCellValueFactory(new PropertyValueFactory<>("userId"));
