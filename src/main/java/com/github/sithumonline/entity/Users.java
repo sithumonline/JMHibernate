@@ -5,12 +5,20 @@ import java.util.Objects;
 
 @Entity
 public class Users {
-    private Long id;
+//    private Long id;
     private int userId;
     private String username;
     private String password;
     private String fullname;
     private String email;
+
+    public Users(int userId, String username, String password, String fullname, String email) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.email = email;
+    }
 
     public Users(String username, String password, String fullname, String email) {
         this.username = username;
@@ -19,15 +27,19 @@ public class Users {
         this.email = email;
     }
 
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
+    public Users() {
+
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    @Id
+//    @GeneratedValue
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Id
     @Column(name = "user_id")

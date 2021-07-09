@@ -105,7 +105,7 @@ public class SQLViewerHandler implements Initializable {
 //        ObservableList<Users> list = userBO.getAllUsers();
         ObservableList<Users> list = UserController.getUserList();
 
-        tab_userid.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+        tab_userid.setCellValueFactory(new PropertyValueFactory<>("userId"));
         tab_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         tab_password.setCellValueFactory(new PropertyValueFactory<>("password"));
         tab_fullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));

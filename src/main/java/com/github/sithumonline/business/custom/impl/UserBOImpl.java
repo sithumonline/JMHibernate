@@ -109,6 +109,7 @@ public class UserBOImpl implements UserBO {
                      ) {
                     userDTOList.add(
                             new Users(
+                                    user.getUserId(),
                                     user.getUsername(),
                                     user.getPassword(),
                                     user.getFullname(),
