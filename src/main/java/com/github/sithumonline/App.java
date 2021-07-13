@@ -14,14 +14,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("SQLViewer"), 960, 250);
+        scene = new Scene(loadFXML("main-plane"), 960, 250);
         stage.setScene(scene);
         stage.show();
     }
 
-//    static void setRoot(String fxml) throws IOException {
-//        scene.setRoot(loadFXML(fxml));
-//    }
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
