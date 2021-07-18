@@ -1,21 +1,22 @@
 package com.github.sithumonline.view.handler;
 
+import com.github.sithumonline.App;
 import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
+    @FXML
     public TextField txt_userid;
+    @FXML
+    public Button but_go_main_plane;
     @FXML
     private TextField txt_username;
     @FXML
@@ -98,5 +99,9 @@ public class SQLViewerHandler implements Initializable {
         tab_email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         tab_user.setItems(list);
+    }
+
+    public void goMainPlane() throws Exception {
+        App.setRoot("main-plane");
     }
 }

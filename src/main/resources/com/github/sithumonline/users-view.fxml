@@ -37,6 +37,8 @@
                                 prefWidth="174.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </children>
                 </GridPane>
+                <Button fx:id="but_go_main_plane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0"
+                        prefWidth="174.0" text="Main Plane" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 <Label fx:id="lab_userid" text="userid" GridPane.rowIndex="3"/>
                 <TextField fx:id="txt_userid" GridPane.rowIndex="4"/>
                 <Label fx:id="lab_msg" text="username" GridPane.rowIndex="5"/>
