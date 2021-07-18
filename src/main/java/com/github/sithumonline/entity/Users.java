@@ -5,13 +5,13 @@ import java.util.Objects;
 
 @Entity
 public class Users {
-    private int userId;
+    private String userId;
     private String username;
     private String password;
     private String fullname;
     private String email;
 
-    public Users(int userId, String username, String password, String fullname, String email) {
+    public Users(String userId, String username, String password, String fullname, String email) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -32,11 +32,11 @@ public class Users {
 
     @Id
     @Column(name = "user_id")
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

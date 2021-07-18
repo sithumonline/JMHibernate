@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
+    public TextField txt_userid;
     @FXML
     private TextField txt_username;
     @FXML
@@ -50,8 +51,8 @@ public class SQLViewerHandler implements Initializable {
     }
 
     public void pressDelete() throws Exception {
-        if (!txt_username.getText().isEmpty()) {
-            UserController.deleteUser(txt_username.getText());
+        if (!txt_userid.getText().isEmpty()) {
+            UserController.deleteUser(txt_userid.getText());
             lab_info.setText("TextField deleted");
             showUser();
         } else {
@@ -61,7 +62,7 @@ public class SQLViewerHandler implements Initializable {
 
     public void pressUpdate() throws Exception {
         if (!(txt_username.getText().isEmpty() || txt_password.getText().isEmpty() || txt_fullname.getText().isEmpty() || txt_email.getText().isEmpty())) {
-            Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
+            Users user = new Users(txt_userid.getText(), txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
             UserController.updateUser(user);
             lab_info.setText("TextField updated");
             showUser();
@@ -75,6 +76,7 @@ public class SQLViewerHandler implements Initializable {
         txt_fullname.setText("");
         txt_password.setText("");
         txt_email.setText("");
+        txt_userid.setText("");
     }
 
     @Override
