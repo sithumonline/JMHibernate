@@ -15,7 +15,7 @@
     <children>
         <GridPane>
             <children>
-                <Label fx:id="lab_info" text="Insert Data" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+                <Label fx:id="labInfo" text="Insert Data" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
                 <GridPane GridPane.rowIndex="12">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -37,18 +37,18 @@
                                 prefWidth="174.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </children>
                 </GridPane>
-                <Button fx:id="but_go_main_plane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0"
+                <Button fx:id="butGoMainPlane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0"
                         prefWidth="174.0" text="Main Plane" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 <Label fx:id="lab_userid" text="userid" GridPane.rowIndex="3"/>
-                <TextField fx:id="txt_userid" GridPane.rowIndex="4"/>
+                <TextField fx:id="txtUserId" GridPane.rowIndex="4"/>
                 <Label fx:id="lab_msg" text="username" GridPane.rowIndex="5"/>
-                <TextField fx:id="txt_username" GridPane.rowIndex="6"/>
+                <TextField fx:id="txtUsername" GridPane.rowIndex="6"/>
                 <Label fx:id="lab_msg1" text="password" GridPane.rowIndex="8"/>
-                <TextField fx:id="txt_password" GridPane.rowIndex="9"/>
+                <TextField fx:id="txtPassword" GridPane.rowIndex="9"/>
                 <Label fx:id="lab_msg11" text="fullname" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-                <TextField fx:id="txt_fullname" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <TextField fx:id="txtFullname" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
                 <Label fx:id="lab_msg111" text="email" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-                <TextField fx:id="txt_email" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+                <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
             </children>
             <columnConstraints>
                 <ColumnConstraints/>
@@ -70,13 +70,13 @@
                 <RowConstraints/>
             </rowConstraints>
         </GridPane>
-        <TableView fx:id="tab_user" prefHeight="200.0" prefWidth="528.0" GridPane.columnIndex="3">
+        <TableView fx:id="tabUser" prefHeight="200.0" prefWidth="528.0" GridPane.columnIndex="3">
             <columns>
-                <TableColumn fx:id="tab_userid" prefWidth="75.0" text="user_id"/>
-                <TableColumn fx:id="tab_username" prefWidth="90.0" text="username"/>
-                <TableColumn fx:id="tab_password" prefWidth="87.0" text="password"/>
-                <TableColumn fx:id="tab_fullname" minWidth="0.0" prefWidth="106.0" text="fullname"/>
-                <TableColumn fx:id="tab_email" prefWidth="167.0" text="email"/>
+                <TableColumn fx:id="tabUserId" prefWidth="75.0" text="user_id"/>
+                <TableColumn fx:id="tabUsername" prefWidth="90.0" text="username"/>
+                <TableColumn fx:id="tabPassword" prefWidth="87.0" text="password"/>
+                <TableColumn fx:id="tabFullname" minWidth="0.0" prefWidth="106.0" text="fullname"/>
+                <TableColumn fx:id="tabEmail" prefWidth="167.0" text="email"/>
             </columns>
         </TableView>
     </children>
