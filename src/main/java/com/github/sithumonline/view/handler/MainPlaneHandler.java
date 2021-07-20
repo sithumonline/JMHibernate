@@ -10,4 +10,8 @@ public class MainPlaneHandler {
     private void switchToViewUsers() throws IOException {
         App.setRoot("users-view");
     }
+    @FXML
+    private void switchToSearchUsers() throws IOException {
+        App.setRoot("users-search");
+    }
 }
