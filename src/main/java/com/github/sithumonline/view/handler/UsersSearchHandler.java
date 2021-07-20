@@ -1,16 +1,23 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.controller.UserQueryController;
+import com.github.sithumonline.entity.Users;
 import com.github.sithumonline.entity.UsersQuery;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UsersSearchHandler {
+public class UsersSearchHandler implements Initializable {
     @FXML
     public TextField txtQueryLogic;
     @FXML
@@ -19,6 +26,8 @@ public class UsersSearchHandler {
     public TextField txtQueryId;
     @FXML
     public Label labInfo;
+    @FXML
+    public ComboBox comQueryName;
 
     public void goMainPlane() throws IOException {
         App.setRoot("main-plane");
@@ -47,6 +56,24 @@ public class UsersSearchHandler {
             UserQueryController.deleteUser(txtQueryId.getText());
         } else {
             labInfo.setText("Query ID is empty");
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            showUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showUser() throws Exception {
+        ObservableList<UsersQuery> list = UserQueryController.getUserList();
+
+        for (UsersQuery user: list
+        ) {
+            comQueryName.getItems().add(user.getName());
         }
     }
 }

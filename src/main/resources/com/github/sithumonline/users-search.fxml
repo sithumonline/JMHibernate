@@ -25,7 +25,7 @@
             <Button fx:id="butGoMainPlane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0" prefWidth="188.0" text="Main Plane" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-      <ComboBox layoutX="7.0" layoutY="134.0" prefHeight="26.0" prefWidth="542.0" />
+      <ComboBox layoutX="7.0" fx:id="comQueryName" layoutY="134.0" prefHeight="26.0" prefWidth="542.0" />
       <TextField layoutX="7.0" layoutY="174.0" prefHeight="26.0" prefWidth="542.0" />
       <TextField fx:id="txtQueryLogic" layoutX="7.0" layoutY="100.0" prefHeight="26.0" prefWidth="542.0" />
       <Label fx:id="labInfo" layoutX="14.0" layoutY="206.0" prefHeight="16.0" prefWidth="285.0" text="Null" />
