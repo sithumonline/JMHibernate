@@ -8,22 +8,22 @@ import javafx.collections.ObservableList;
 public class UserQueryController {
 
     public static boolean addUser(UsersQuery userDTO)throws Exception{
-        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
+        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USERQUERY);
         return userService.addUser(userDTO);
     }
 
     public static boolean updateUser(UsersQuery userDTO)throws Exception{
-        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
+        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USERQUERY);
         return userService.updateUser(userDTO);
     }
 
     public static boolean deleteUser(String userId)throws Exception{
-        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
+        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USERQUERY);
         return userService.deleteUser(userId);
     }
 
     public static ObservableList<UsersQuery> getUserList()throws Exception{
-        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
+        UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USERQUERY);
         return userService.getAllUsers();
     }
     

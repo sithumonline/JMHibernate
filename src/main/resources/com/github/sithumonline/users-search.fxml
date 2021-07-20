@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.UsersSearchHandler">
    <children>
-      <GridPane layoutX="39.0" layoutY="77.0" prefHeight="90.0" prefWidth="536.0">
+      <GridPane layoutX="10.0" layoutY="10.0" prefHeight="90.0" prefWidth="536.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,8 +25,9 @@
             <Button fx:id="butGoMainPlane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0" prefWidth="188.0" text="Main Plane" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-      <ComboBox layoutX="41.0" layoutY="187.0" prefHeight="26.0" prefWidth="542.0" />
-      <TextField layoutX="41.0" layoutY="244.0" prefHeight="26.0" prefWidth="542.0" />
-      <TextField fx:id="txtQueryLogic" layoutX="41.0" layoutY="154.0" prefHeight="26.0" prefWidth="542.0" />
+      <ComboBox layoutX="7.0" layoutY="134.0" prefHeight="26.0" prefWidth="542.0" />
+      <TextField layoutX="7.0" layoutY="174.0" prefHeight="26.0" prefWidth="542.0" />
+      <TextField fx:id="txtQueryLogic" layoutX="7.0" layoutY="100.0" prefHeight="26.0" prefWidth="542.0" />
+      <Label fx:id="labInfo" layoutX="14.0" layoutY="206.0" prefHeight="16.0" prefWidth="285.0" text="Null" />
    </children>
 </AnchorPane>
