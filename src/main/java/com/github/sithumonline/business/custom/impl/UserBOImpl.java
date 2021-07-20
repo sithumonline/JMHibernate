@@ -8,6 +8,7 @@ import com.github.sithumonline.resources.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -107,6 +108,37 @@ public class UserBOImpl implements UserBO {
                 ObservableList<Users> userDTOList = FXCollections.observableArrayList();
                 for (Users user: userList
                      ) {
+                    userDTOList.add(
+                            new Users(
+                                    user.getUserId(),
+                                    user.getUsername(),
+                                    user.getPassword(),
+                                    user.getFullname(),
+                                    user.getEmail()
+                            )
+                    );
+                }
+                return userDTOList;
+            }else {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public ObservableList<Users> getAllUsersById(String logic) throws Exception {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+            userRepository.setSession(session);
+            String sqlQuery = String.format("SELECT ur FROM %s ur WHERE %s", "Users", logic);
+            Query query = session.createQuery(sqlQuery);
+            List<Users> userList = query.list();
+
+            if (userList != null){
+                ObservableList<Users> userDTOList = FXCollections.observableArrayList();
+                System.out.println(userList);
+                for (Users user: userList
+                ) {
                     userDTOList.add(
                             new Users(
                                     user.getUserId(),

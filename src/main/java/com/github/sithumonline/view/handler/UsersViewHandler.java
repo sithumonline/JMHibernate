@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SQLViewerHandler implements Initializable {
+public class UsersViewHandler implements Initializable {
     @FXML
     public TextField txtUserId;
     @FXML

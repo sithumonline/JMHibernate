@@ -18,4 +18,6 @@ public interface UserBO extends SuperBO{
 //  List<Users> getAllUsers()throws Exception;
 
     ObservableList<Users> getAllUsers()throws Exception;
+
+    ObservableList<Users> getAllUsersById(String id) throws Exception;
 }
