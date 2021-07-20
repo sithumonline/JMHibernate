@@ -4,6 +4,7 @@ import com.github.sithumonline.App;
 import com.github.sithumonline.controller.UserQueryController;
 import com.github.sithumonline.entity.UsersQuery;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -25,13 +26,15 @@ public class UsersSearchHandler implements Initializable {
     public Label labInfo;
     @FXML
     public ComboBox comQueryName;
+    @FXML
+    public TextField txtLogic;
 
     public void goMainPlane() throws IOException {
         App.setRoot("main-plane");
     }
 
     public void pressSave() throws Exception {
-        if(!(txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
+        if (!(txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
             UsersQuery usersQuery = new UsersQuery(txtQueryName.getText(), txtQueryLogic.getText());
             UserQueryController.addUser(usersQuery);
         } else {
@@ -40,7 +43,7 @@ public class UsersSearchHandler implements Initializable {
     }
 
     public void pressUpdate() throws Exception {
-        if(!(txtQueryId.getText().isEmpty() && txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
+        if (!(txtQueryId.getText().isEmpty() && txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
             UsersQuery usersQuery = new UsersQuery(txtQueryId.getText(), txtQueryName.getText(), txtQueryLogic.getText());
             UserQueryController.updateUser(usersQuery);
         } else {
@@ -49,7 +52,7 @@ public class UsersSearchHandler implements Initializable {
     }
 
     public void pressDelete() throws Exception {
-        if(!(txtQueryId.getText().isEmpty())) {
+        if (!(txtQueryId.getText().isEmpty())) {
             UserQueryController.deleteUser(txtQueryId.getText());
         } else {
             labInfo.setText("Query ID is empty");
@@ -68,9 +71,17 @@ public class UsersSearchHandler implements Initializable {
     public void showUser() throws Exception {
         ObservableList<UsersQuery> list = UserQueryController.getUserList();
 
-        for (UsersQuery user: list
+        for (UsersQuery user : list
         ) {
             comQueryName.getItems().add(user.getName());
+        }
+    }
+
+    public void pressApply() throws Exception {
+        if (!(comQueryName.getSelectionModel().isEmpty())) {
+            txtLogic.setText(UserQueryController.getLogicByName(comQueryName.getValue().toString()));
+        } else {
+            labInfo.setText("Query Name not selected");
         }
     }
 }

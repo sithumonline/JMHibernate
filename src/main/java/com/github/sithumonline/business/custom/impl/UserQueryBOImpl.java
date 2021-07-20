@@ -8,6 +8,7 @@ import com.github.sithumonline.resources.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class UserQueryBOImpl implements UserQueryBO {
 
     @Override
     public boolean addUser(UsersQuery userDTO) throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             userRepository.setSession(session);
 
@@ -39,7 +40,7 @@ public class UserQueryBOImpl implements UserQueryBO {
 
     @Override
     public boolean updateUser(UsersQuery userDTO) throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             userRepository.setSession(session);
 
@@ -56,15 +57,15 @@ public class UserQueryBOImpl implements UserQueryBO {
 
     @Override
     public boolean deleteUser(String userId) throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             userRepository.setSession(session);
             UsersQuery user = userRepository.findById(userId);
-            if (user != null){
+            if (user != null) {
                 userRepository.delete(user);
                 session.flush();
                 return true;
-            }else {
+            } else {
                 return false;
             }
         }
@@ -72,17 +73,17 @@ public class UserQueryBOImpl implements UserQueryBO {
 
     @Override
     public UsersQuery getUserById(String userId) throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             userRepository.setSession(session);
             UsersQuery user = userRepository.findById(userId);
             session.getTransaction().commit();
-            if (user != null){
+            if (user != null) {
                 return new UsersQuery(
                         user.getName(),
                         user.getLogic()
                 );
-            }else {
+            } else {
                 return null;
             }
         }
@@ -90,16 +91,16 @@ public class UserQueryBOImpl implements UserQueryBO {
 
     @Override
     public ObservableList<UsersQuery> getAllUsers() throws Exception {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             userRepository.setSession(session);
             List<UsersQuery> userList = userRepository.findAll();
             session.getTransaction().commit();
 
-            if (userList != null){
+            if (userList != null) {
                 ObservableList<UsersQuery> userDTOList = FXCollections.observableArrayList();
-                for (UsersQuery user: userList
-                     ) {
+                for (UsersQuery user : userList
+                ) {
                     userDTOList.add(
                             new UsersQuery(
                                     user.getQueryId(),
@@ -109,7 +110,23 @@ public class UserQueryBOImpl implements UserQueryBO {
                     );
                 }
                 return userDTOList;
-            }else {
+            } else {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public String getLogicByName(String namae) throws Exception {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            String sqlQuery = String.format("SELECT logic FROM %s WHERE name = '%s'", "UsersQuery", namae);
+            Query query = session.createQuery(sqlQuery);
+            List logic = query.list();
+
+            if (logic != null) {
+                return logic.get(0).toString();
+            } else {
                 return null;
             }
         }
