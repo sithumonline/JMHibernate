@@ -27,9 +27,9 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    public static ObservableList<Users> getAllUsersByLogic(String logic)throws Exception{
+    public static ObservableList<Users> getAllUsersById(String id)throws Exception{
         UserBO userService = (UserBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
-        return userService.getAllUsersByLogic(logic);
+        return userService.getAllUsersById(id);
     }
     
 }

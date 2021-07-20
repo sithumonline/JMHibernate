@@ -19,5 +19,5 @@ public interface UserQueryBO extends SuperBO{
 
     ObservableList<UsersQuery> getAllUsers()throws Exception;
 
-   String getLogicByName(String namae) throws Exception;
+   String getLogicById(String namae) throws Exception;
 }

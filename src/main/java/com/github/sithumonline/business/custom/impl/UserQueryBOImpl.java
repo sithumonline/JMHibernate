@@ -117,10 +117,10 @@ public class UserQueryBOImpl implements UserQueryBO {
     }
 
     @Override
-    public String getLogicByName(String namae) throws Exception {
+    public String getLogicById(String id) throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            String sqlQuery = String.format("SELECT logic FROM %s WHERE name = '%s'", "UsersQuery", namae);
+            String sqlQuery = String.format("SELECT logic FROM %s WHERE query_id = '%s'", "UsersQuery", id);
             Query query = session.createQuery(sqlQuery);
             List logic = query.list();
 

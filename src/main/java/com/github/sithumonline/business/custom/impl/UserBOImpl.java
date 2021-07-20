@@ -126,7 +126,7 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public ObservableList<Users> getAllUsersByLogic(String logic) throws Exception {
+    public ObservableList<Users> getAllUsersById(String logic) throws Exception {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             userRepository.setSession(session);

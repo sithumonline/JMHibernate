@@ -19,5 +19,5 @@ public interface UserBO extends SuperBO{
 
     ObservableList<Users> getAllUsers()throws Exception;
 
-    ObservableList<Users> getAllUsersByLogic(String logic) throws Exception;
+    ObservableList<Users> getAllUsersById(String id) throws Exception;
 }

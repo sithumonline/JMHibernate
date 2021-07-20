@@ -86,23 +86,21 @@ public class UsersSearchHandler implements Initializable {
 
         for (UsersQuery user : list
         ) {
-            comQueryName.getItems().add(user.getName());
-//            comQueryName.getItems().add(user.getQueryId() + " |    " + user.getName());
+            comQueryName.getItems().add(user.getQueryId() + "~" + user.getName());
         }
     }
 
     public void pressApply() throws Exception {
         if (!(comQueryName.getSelectionModel().isEmpty())) {
-            txtLogic.setText(UserQueryController.getLogicByName(comQueryName.getValue().toString()));
-//            txtLogic.setText(UserQueryController.getLogicByName(comQueryName.getValue().toString().split("\\|")[0].replaceAll("\\s","")));
-            showUser(UserQueryController.getLogicByName(comQueryName.getValue().toString()));
+            txtLogic.setText(UserQueryController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+            showUser(UserQueryController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
         } else {
             labInfo.setText("Query Name not selected");
         }
     }
 
     public void showUser(String logic) throws Exception {
-        ObservableList<Users> list = UserController.getAllUsersByLogic(logic);
+        ObservableList<Users> list = UserController.getAllUsersById(logic);
 
         tabUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         tabUsername.setCellValueFactory(new PropertyValueFactory<>("username"));

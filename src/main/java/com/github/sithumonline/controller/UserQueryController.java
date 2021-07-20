@@ -27,9 +27,9 @@ public class UserQueryController {
         return userService.getAllUsers();
     }
 
-    public static String getLogicByName(String name)throws Exception{
+    public static String getLogicById(String name)throws Exception{
         UserQueryBO userService = (UserQueryBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USERQUERY);
-        return userService.getLogicByName(name);
+        return userService.getLogicById(name);
     }
 
 }
