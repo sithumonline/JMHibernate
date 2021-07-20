@@ -1,15 +1,15 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.controller.UserQueryController;
+import com.github.sithumonline.entity.Users;
 import com.github.sithumonline.entity.UsersQuery;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +28,18 @@ public class UsersSearchHandler implements Initializable {
     public ComboBox comQueryName;
     @FXML
     public TextField txtLogic;
+    @FXML
+    public TableColumn tabUsername;
+    @FXML
+    public TableColumn tabUserId;
+    @FXML
+    public TableColumn tabPassword;
+    @FXML
+    public TableColumn tabFullname;
+    @FXML
+    public TableColumn tabEmail;
+    @FXML
+    public TableView tabUser;
 
     public void goMainPlane() throws IOException {
         App.setRoot("main-plane");
@@ -37,6 +49,7 @@ public class UsersSearchHandler implements Initializable {
         if (!(txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
             UsersQuery usersQuery = new UsersQuery(txtQueryName.getText(), txtQueryLogic.getText());
             UserQueryController.addUser(usersQuery);
+            showQueryNameList();
         } else {
             labInfo.setText("Name or Logic is empty");
         }
@@ -62,26 +75,41 @@ public class UsersSearchHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            showUser();
+            showQueryNameList();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void showUser() throws Exception {
+    public void showQueryNameList() throws Exception {
         ObservableList<UsersQuery> list = UserQueryController.getUserList();
 
         for (UsersQuery user : list
         ) {
             comQueryName.getItems().add(user.getName());
+//            comQueryName.getItems().add(user.getQueryId() + " |    " + user.getName());
         }
     }
 
     public void pressApply() throws Exception {
         if (!(comQueryName.getSelectionModel().isEmpty())) {
             txtLogic.setText(UserQueryController.getLogicByName(comQueryName.getValue().toString()));
+//            txtLogic.setText(UserQueryController.getLogicByName(comQueryName.getValue().toString().split("\\|")[0].replaceAll("\\s","")));
+            showUser(UserQueryController.getLogicByName(comQueryName.getValue().toString()));
         } else {
             labInfo.setText("Query Name not selected");
         }
+    }
+
+    public void showUser(String logic) throws Exception {
+        ObservableList<Users> list = UserController.getAllUsersByLogic(logic);
+
+        tabUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        tabUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tabPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        tabFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        tabEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        tabUser.setItems(list);
     }
 }

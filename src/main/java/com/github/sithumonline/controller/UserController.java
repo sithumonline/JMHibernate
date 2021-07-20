@@ -26,5 +26,10 @@ public class UserController {
         UserBO userService = (UserBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
         return userService.getAllUsers();
     }
+
+    public static ObservableList<Users> getAllUsersByLogic(String logic)throws Exception{
+        UserBO userService = (UserBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.USER);
+        return userService.getAllUsersByLogic(logic);
+    }
     
 }
