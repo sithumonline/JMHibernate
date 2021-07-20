@@ -5,29 +5,33 @@ import java.util.Objects;
 
 @Entity
 public class UsersQuery {
-    private Long id;
     private int queryId;
     private String name;
     private String logic;
 
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
+    public UsersQuery(String queryId, String name, String logic) {
+        this.queryId = Integer.parseInt(queryId);
+        this.name = name;
+        this.logic = logic;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public UsersQuery(String name, String logic) {
+        this.name = name;
+        this.logic = logic;
+    }
+
+    public UsersQuery() {
+
     }
 
     @Id
     @Column(name = "query_id")
-    public int getQueryId() {
-        return queryId;
+    public String getQueryId() {
+        return Integer.toString(queryId);
     }
 
-    public void setQueryId(int queryId) {
-        this.queryId = queryId;
+    public void setQueryId(String queryId) {
+        this.queryId = Integer.parseInt(queryId);
     }
 
     @Basic

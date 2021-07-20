@@ -5,7 +5,7 @@ import com.github.sithumonline.business.custom.impl.*;
 public class BOFactory {
 
     public enum BOTypes{
-        USER
+        USER, USERQUERY
     }
 
     private BOFactory() {
@@ -22,6 +22,7 @@ public class BOFactory {
     public SuperBO getBOFactory(BOTypes boTypes){
         switch (boTypes){
             case USER: return new UserBOImpl();
+            case USERQUERY: return new UserQueryBOImpl();
             default:return null;
         }
     }
