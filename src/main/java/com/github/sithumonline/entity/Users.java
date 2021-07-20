@@ -11,8 +11,8 @@ public class Users {
     private String fullname;
     private String email;
 
-    public Users(int userId, String username, String password, String fullname, String email) {
-        this.userId = userId;
+    public Users(String userId, String username, String password, String fullname, String email) {
+        this.userId = Integer.parseInt(userId);
         this.username = username;
         this.password = password;
         this.fullname = fullname;
@@ -32,12 +32,12 @@ public class Users {
 
     @Id
     @Column(name = "user_id")
-    public int getUserId() {
-        return userId;
+    public String getUserId() {
+        return Integer.toString(userId);
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = Integer.parseInt(userId);
     }
 
     @Basic

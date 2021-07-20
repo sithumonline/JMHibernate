@@ -46,6 +46,7 @@ public class UserBOImpl implements UserBO {
             userRepository.setSession(session);
 
             Users user = new Users(
+                    userDTO.getUserId(),
                     userDTO.getUsername(),
                     userDTO.getPassword(),
                     userDTO.getFullname(),
@@ -66,6 +67,7 @@ public class UserBOImpl implements UserBO {
             Users user = userRepository.findById(userId);
             if (user != null){
                 userRepository.delete(user);
+                session.flush();
                 return true;
             }else {
                 return false;

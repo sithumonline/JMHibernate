@@ -1,14 +1,12 @@
 package com.github.sithumonline.view.handler;
 
+import com.github.sithumonline.App;
 import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -16,65 +14,70 @@ import java.util.ResourceBundle;
 
 public class SQLViewerHandler implements Initializable {
     @FXML
-    private TextField txt_username;
+    public TextField txtUserId;
     @FXML
-    private TextField txt_password;
+    public Button butGoMainPlane;
     @FXML
-    private TextField txt_fullname;
+    private TextField txtUsername;
     @FXML
-    private TextField txt_email;
+    private TextField txtPassword;
     @FXML
-    private Label lab_info;
+    private TextField txtFullname;
     @FXML
-    private TableView<Users> tab_user;
+    private TextField txtEmail;
     @FXML
-    private TableColumn<Users, Integer> tab_userid;
+    private Label labInfo;
     @FXML
-    private TableColumn<Users, String> tab_username;
+    private TableView<Users> tabUser;
     @FXML
-    private TableColumn<Users, String> tab_password;
+    private TableColumn<Users, Integer> tabUserId;
     @FXML
-    private TableColumn<Users, String> tab_fullname;
+    private TableColumn<Users, String> tabUsername;
     @FXML
-    private TableColumn<Users, String> tab_email;
+    private TableColumn<Users, String> tabPassword;
+    @FXML
+    private TableColumn<Users, String> tabFullname;
+    @FXML
+    private TableColumn<Users, String> tabEmail;
 
     public void pressInsert() throws Exception {
-        if (!(txt_username.getText().isEmpty() && txt_password.getText().isEmpty() && txt_fullname.getText().isEmpty() && txt_email.getText().isEmpty())) {
-            Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
+        if (!(txtUsername.getText().isEmpty() && txtPassword.getText().isEmpty() && txtFullname.getText().isEmpty() && txtEmail.getText().isEmpty())) {
+            Users user = new Users(txtUsername.getText(), txtPassword.getText(), txtFullname.getText(), txtEmail.getText());
             UserController.addUser(user);
-            lab_info.setText("TextField added");
+            labInfo.setText("TextField added");
             showUser();
         } else {
-            lab_info.setText("TextField is empty");
+            labInfo.setText("TextField is empty");
         }
     }
 
     public void pressDelete() throws Exception {
-        if (!txt_username.getText().isEmpty()) {
-            UserController.deleteUser(txt_username.getText());
-            lab_info.setText("TextField deleted");
+        if (!txtUserId.getText().isEmpty()) {
+            UserController.deleteUser(txtUserId.getText());
+            labInfo.setText("TextField deleted");
             showUser();
         } else {
-            lab_info.setText("username is empty");
+            labInfo.setText("username is empty");
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txt_username.getText().isEmpty() || txt_password.getText().isEmpty() || txt_fullname.getText().isEmpty() || txt_email.getText().isEmpty())) {
-            Users user = new Users(txt_username.getText(), txt_password.getText(), txt_fullname.getText(), txt_email.getText());
+        if (!(txtUserId.getText().isEmpty() && txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtFullname.getText().isEmpty() || txtEmail.getText().isEmpty())) {
+            Users user = new Users(txtUserId.getText(), txtUsername.getText(), txtPassword.getText(), txtFullname.getText(), txtEmail.getText());
             UserController.updateUser(user);
-            lab_info.setText("TextField updated");
+            labInfo.setText("TextField updated");
             showUser();
         } else {
-            lab_info.setText("TextField is empty");
+            labInfo.setText("TextField is empty");
         }
     }
 
     public void pressClear() {
-        txt_username.setText("");
-        txt_fullname.setText("");
-        txt_password.setText("");
-        txt_email.setText("");
+        txtUsername.setText("");
+        txtFullname.setText("");
+        txtPassword.setText("");
+        txtEmail.setText("");
+        txtUserId.setText("");
     }
 
     @Override
@@ -89,12 +92,16 @@ public class SQLViewerHandler implements Initializable {
     public void showUser() throws Exception {
         ObservableList<Users> list = UserController.getUserList();
 
-        tab_userid.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        tab_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        tab_password.setCellValueFactory(new PropertyValueFactory<>("password"));
-        tab_fullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
-        tab_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tabUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        tabUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tabPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        tabFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        tabEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        tab_user.setItems(list);
+        tabUser.setItems(list);
+    }
+
+    public void goMainPlane() throws Exception {
+        App.setRoot("main-plane");
     }
 }
