@@ -46,7 +46,7 @@ public class UsersSearchHandler implements Initializable {
     }
 
     public void pressSave() throws Exception {
-        if (!(txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
+        if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty())) {
             UsersQuery usersQuery = new UsersQuery(txtQueryName.getText(), txtQueryLogic.getText());
             UserQueryController.addUser(usersQuery);
             showQueryNameList();
@@ -56,7 +56,7 @@ public class UsersSearchHandler implements Initializable {
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtQueryId.getText().isEmpty() && txtQueryName.getText().isEmpty() && txtQueryName.getText().isEmpty())) {
+        if (!(txtQueryId.getText().isEmpty() && txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty())) {
             UsersQuery usersQuery = new UsersQuery(txtQueryId.getText(), txtQueryName.getText(), txtQueryLogic.getText());
             UserQueryController.updateUser(usersQuery);
         } else {
