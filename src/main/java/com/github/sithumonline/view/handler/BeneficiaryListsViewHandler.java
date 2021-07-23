@@ -5,6 +5,7 @@ import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.controller.BeneficiaryListsController;
 import com.github.sithumonline.entity.Users;
 import com.github.sithumonline.entity.BeneficiaryLists;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,15 +41,23 @@ public class BeneficiaryListsViewHandler implements Initializable {
     public TableColumn tabEmail;
     @FXML
     public TableView tabUser;
+    @FXML
+    public ChoiceBox comKind;
 
     public void goMainPlane() throws IOException {
         App.setRoot("main-plane");
     }
 
     public void pressSave() throws Exception {
-        if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty() && comQueryName.getSelectionModel().isEmpty())) {
-            BeneficiaryLists usersQuery = new BeneficiaryLists(txtQueryName.getText(), txtQueryLogic.getText());
-            BeneficiaryListsController.addUser(usersQuery);
+        if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty() && comKind.getSelectionModel().isEmpty())) {
+            switch (comKind.getValue().toString()) {
+                case "User":
+                    BeneficiaryLists usersQuery = new BeneficiaryLists(comKind.getValue().toString(), txtQueryName.getText(), txtQueryLogic.getText());
+                    BeneficiaryListsController.addUser(usersQuery);
+                    break;
+                default:
+                    labInfo.setText("Something going to wrong");
+            }
             showQueryNameList();
         } else {
             labInfo.setText("Kind, Name or Logic is empty");
@@ -75,6 +84,8 @@ public class BeneficiaryListsViewHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            tabUser.setVisible(false);
+            comKind.setItems(FXCollections.observableArrayList("User"));
             showQueryNameList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,16 +97,23 @@ public class BeneficiaryListsViewHandler implements Initializable {
 
         for (BeneficiaryLists user : list
         ) {
-            comQueryName.getItems().add(user.getQueryId() + "~" + user.getName());
+            comQueryName.getItems().add(user.getQueryId() + "~" + user.getKind() + "~" + user.getName());
         }
     }
 
     public void pressApply() throws Exception {
-        if (!(comQueryName.getSelectionModel().isEmpty())) {
+        if (!(comQueryName.getSelectionModel().isEmpty() && comKind.getSelectionModel().isEmpty())) {
             txtLogic.setText(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
-            showUser(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+            switch (comKind.getValue().toString()) {
+                case "User":
+                    tabUser.setVisible(true);
+                    showUser(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+                    break;
+                default:
+                    labInfo.setText("Something going to wrong");
+            }
         } else {
-            labInfo.setText("Query Name not selected");
+            labInfo.setText("Query Name or Kind not selected");
         }
     }
 

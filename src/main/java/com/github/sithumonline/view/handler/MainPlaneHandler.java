@@ -1,6 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -13,5 +14,9 @@ public class MainPlaneHandler {
     @FXML
     private void switchToSearchUsers() throws IOException {
         App.setRoot("users-search");
+    }
+    @FXML
+    public void switchToBeneficiaryLists() throws IOException {
+        App.setRoot("beneficiary-lists-view");
     }
 }

@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="370.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.BeneficiaryListsViewHandler">
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.sithumonline.view.handler.BeneficiaryListsViewHandler">
     <children>
         <GridPane layoutX="10.0" layoutY="10.0" prefHeight="90.0" prefWidth="400.0">
             <columnConstraints>
@@ -28,9 +29,9 @@
                         prefWidth="191.0" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
                 <Button fx:id="butGoMainPlane" mnemonicParsing="false" onAction="#goMainPlane" prefHeight="26.0"
                         prefWidth="188.0" text="Main Plane" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="2"/>
                 <Label text="ID"/>
                 <Label text="Name" GridPane.columnIndex="1"/>
+                <ChoiceBox fx:id="comKind" prefWidth="150.0" GridPane.columnIndex="2"/>
             </children>
         </GridPane>
         <GridPane layoutX="10.0" layoutY="105.0" prefHeight="128.0" prefWidth="400.0">
