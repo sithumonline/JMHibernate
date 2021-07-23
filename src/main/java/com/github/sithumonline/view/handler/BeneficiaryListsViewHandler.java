@@ -50,14 +50,8 @@ public class BeneficiaryListsViewHandler implements Initializable {
 
     public void pressSave() throws Exception {
         if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty() && comKind.getSelectionModel().isEmpty())) {
-            switch (comKind.getValue().toString()) {
-                case "User":
-                    BeneficiaryLists usersQuery = new BeneficiaryLists(comKind.getValue().toString(), txtQueryName.getText(), txtQueryLogic.getText());
-                    BeneficiaryListsController.addUser(usersQuery);
-                    break;
-                default:
-                    labInfo.setText("Something going to wrong");
-            }
+            BeneficiaryLists usersQuery = new BeneficiaryLists(comKind.getValue().toString(), txtQueryName.getText(), txtQueryLogic.getText());
+            BeneficiaryListsController.addUser(usersQuery);
             showQueryNameList();
         } else {
             labInfo.setText("Kind, Name or Logic is empty");
@@ -102,9 +96,9 @@ public class BeneficiaryListsViewHandler implements Initializable {
     }
 
     public void pressApply() throws Exception {
-        if (!(comQueryName.getSelectionModel().isEmpty() && comKind.getSelectionModel().isEmpty())) {
+        if (!(comQueryName.getSelectionModel().isEmpty())) {
             txtLogic.setText(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
-            switch (comKind.getValue().toString()) {
+            switch (comQueryName.getValue().toString().split("~")[1]) {
                 case "User":
                     tabUser.setVisible(true);
                     showUser(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
