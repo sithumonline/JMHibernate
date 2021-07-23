@@ -2,9 +2,10 @@ package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
 import com.github.sithumonline.controller.UserController;
-import com.github.sithumonline.controller.UserQueryController;
+import com.github.sithumonline.controller.BeneficiaryListsController;
 import com.github.sithumonline.entity.Users;
-import com.github.sithumonline.entity.UsersQuery;
+import com.github.sithumonline.entity.BeneficiaryLists;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UsersSearchHandler implements Initializable {
+public class BeneficiaryListsViewHandler implements Initializable {
     @FXML
     public TextField txtQueryLogic;
     @FXML
@@ -40,25 +41,27 @@ public class UsersSearchHandler implements Initializable {
     public TableColumn tabEmail;
     @FXML
     public TableView tabUser;
+    @FXML
+    public ChoiceBox comKind;
 
     public void goMainPlane() throws IOException {
         App.setRoot("main-plane");
     }
 
     public void pressSave() throws Exception {
-        if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty())) {
-            UsersQuery usersQuery = new UsersQuery(txtQueryName.getText(), txtQueryLogic.getText());
-            UserQueryController.addUser(usersQuery);
+        if (!(txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty() && comKind.getSelectionModel().isEmpty())) {
+            BeneficiaryLists usersQuery = new BeneficiaryLists(comKind.getValue().toString(), txtQueryName.getText(), txtQueryLogic.getText());
+            BeneficiaryListsController.addUser(usersQuery);
             showQueryNameList();
         } else {
-            labInfo.setText("Name or Logic is empty");
+            labInfo.setText("Kind, Name or Logic is empty");
         }
     }
 
     public void pressUpdate() throws Exception {
         if (!(txtQueryId.getText().isEmpty() && txtQueryName.getText().isEmpty() && txtQueryLogic.getText().isEmpty())) {
-            UsersQuery usersQuery = new UsersQuery(txtQueryId.getText(), txtQueryName.getText(), txtQueryLogic.getText());
-            UserQueryController.updateUser(usersQuery);
+            BeneficiaryLists usersQuery = new BeneficiaryLists(txtQueryId.getText(), txtQueryName.getText(), txtQueryLogic.getText());
+            BeneficiaryListsController.updateUser(usersQuery);
         } else {
             labInfo.setText("Query ID, Name or Logic is empty");
         }
@@ -66,7 +69,7 @@ public class UsersSearchHandler implements Initializable {
 
     public void pressDelete() throws Exception {
         if (!(txtQueryId.getText().isEmpty())) {
-            UserQueryController.deleteUser(txtQueryId.getText());
+            BeneficiaryListsController.deleteUser(txtQueryId.getText());
         } else {
             labInfo.setText("Query ID is empty");
         }
@@ -75,6 +78,8 @@ public class UsersSearchHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            tabUser.setVisible(false);
+            comKind.setItems(FXCollections.observableArrayList("User"));
             showQueryNameList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,20 +87,27 @@ public class UsersSearchHandler implements Initializable {
     }
 
     public void showQueryNameList() throws Exception {
-        ObservableList<UsersQuery> list = UserQueryController.getUserList();
+        ObservableList<BeneficiaryLists> list = BeneficiaryListsController.getUserList();
 
-        for (UsersQuery user : list
+        for (BeneficiaryLists user : list
         ) {
-            comQueryName.getItems().add(user.getQueryId() + "~" + user.getName());
+            comQueryName.getItems().add(user.getQueryId() + "~" + user.getKind() + "~" + user.getName());
         }
     }
 
     public void pressApply() throws Exception {
         if (!(comQueryName.getSelectionModel().isEmpty())) {
-            txtLogic.setText(UserQueryController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
-            showUser(UserQueryController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+            txtLogic.setText(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+            switch (comQueryName.getValue().toString().split("~")[1]) {
+                case "User":
+                    tabUser.setVisible(true);
+                    showUser(BeneficiaryListsController.getLogicById(comQueryName.getValue().toString().split("~")[0]));
+                    break;
+                default:
+                    labInfo.setText("Something going to wrong");
+            }
         } else {
-            labInfo.setText("Query Name not selected");
+            labInfo.setText("Query Name or Kind not selected");
         }
     }
 

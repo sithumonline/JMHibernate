@@ -7,5 +7,6 @@
    <children>
       <Button fx:id="butUsersView" layoutX="73.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToViewUsers" prefHeight="26.0" prefWidth="125.0" text="View Users" />
       <Button fx:id="butUsersSearch" layoutX="73.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSearchUsers" prefHeight="26.0" prefWidth="125.0" text="Search User" />
+      <Button layoutX="229.0" layoutY="140.0" mnemonicParsing="false" text="Beneficiary Lists" onAction="#switchToBeneficiaryLists"/>
    </children>
 </AnchorPane>
