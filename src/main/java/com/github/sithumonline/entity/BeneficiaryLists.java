@@ -10,14 +10,36 @@ public class BeneficiaryLists {
     private String name;
     private String logic;
 
-    @Id
-    @Column(name = "query_id")
-    public int getQueryId() {
-        return queryId;
+    public BeneficiaryLists(String kind, String name, String logic) {
+        this.kind = kind;
+        this.name = name;
+        this.logic = logic;
     }
 
-    public void setQueryId(int queryId) {
-        this.queryId = queryId;
+    public BeneficiaryLists(String name, String logic) {
+        this.name = name;
+        this.logic = logic;
+    }
+
+    public BeneficiaryLists(String kind, String queryId, String name, String logic) {
+        this.kind = kind;
+        this.queryId = Integer.parseInt(queryId);
+        this.name = name;
+        this.logic = logic;
+    }
+
+    public BeneficiaryLists() {
+
+    }
+
+    @Id
+    @Column(name = "query_id")
+    public String getQueryId() {
+        return Integer.toString(queryId);
+    }
+
+    public void setQueryId(String queryId) {
+        this.queryId = Integer.parseInt(queryId);
     }
 
     @Basic

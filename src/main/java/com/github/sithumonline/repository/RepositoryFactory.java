@@ -5,7 +5,7 @@ import com.github.sithumonline.repository.custom.impl.*;
 public class RepositoryFactory {
 
     public enum RepositoryFactoryTypes{
-        USER, USERQUERY
+        USER, USERQUERY, BENEFICIARYLISTS,
     }
 
     private RepositoryFactory() {
@@ -23,6 +23,7 @@ public class RepositoryFactory {
         switch (repositoryFactoryTypes){
             case USER: return new UserRepositoryImpl();
             case USERQUERY: return new UserQueryRepositoryImpl();
+            case BENEFICIARYLISTS: return new BeneficiaryListsRepositoryImpl();
             default: return null;
         }
     }
