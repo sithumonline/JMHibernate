@@ -19,4 +19,8 @@ public class MainPlaneHandler {
     public void switchToBeneficiaryLists() throws IOException {
         App.setRoot("beneficiary-lists-view");
     }
+
+    public void switchToEventView() throws IOException {
+        App.setRoot("events-view");
+    }
 }
