@@ -23,4 +23,9 @@ public class MainPlaneHandler {
     public void switchToEventView() throws IOException {
         App.setRoot("events-view");
     }
+
+    public void switchToSocietyView() throws IOException {
+        App.setRoot("societies-view");
+    }
+
 }

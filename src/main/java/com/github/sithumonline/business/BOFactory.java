@@ -5,7 +5,7 @@ import com.github.sithumonline.business.custom.impl.*;
 public class BOFactory {
 
     public enum BOTypes{
-        USER, USERQUERY, BENEFICIARYLISTS, EVENT,
+        USER, USERQUERY, BENEFICIARYLISTS, EVENT, SOCIETY,
     }
 
     private BOFactory() {
@@ -24,7 +24,8 @@ public class BOFactory {
             case USER: return new UserBOImpl();
             case USERQUERY: return new UserQueryBOImpl();
             case BENEFICIARYLISTS: return new BeneficiaryListsBOImpl();
-            case EVENT:return new EventBOImpl();
+            case EVENT: return new EventBOImpl();
+            case SOCIETY: return new SocietyBOImpl();
             default:return null;
         }
     }

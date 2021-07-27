@@ -9,5 +9,6 @@
       <Button fx:id="butUsersSearch" layoutX="73.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSearchUsers" prefHeight="26.0" prefWidth="125.0" text="Search User" />
       <Button layoutX="229.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToBeneficiaryLists" text="Beneficiary Lists" />
       <Button fx:id="butEvent" layoutX="229.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToEventView" text="Event" />
+      <Button layoutX="379.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSocietyView" text="Society" />
    </children>
 </AnchorPane>

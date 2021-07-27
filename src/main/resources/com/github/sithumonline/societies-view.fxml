@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.SocietiesViewHandler">
+   <children>
+      <TextField fx:id="txtID" layoutX="21.0" layoutY="37.0" />
+      <TextField fx:id="txtName" layoutX="204.0" layoutY="37.0" />
+      <TextField fx:id="txtOrientation" layoutX="394.0" layoutY="37.0" />
+      <TextField fx:id="txtOfficeBearer" layoutX="582.0" layoutY="37.0" />
+      <TextField fx:id="txtMonthlyMembershipFee" layoutX="769.0" layoutY="37.0" />
+      <TextField fx:id="txtAgeGroup" layoutX="960.0" layoutY="37.0" />
+      <Label layoutX="21.0" layoutY="14.0" text="ID" />
+      <Label layoutX="204.0" layoutY="14.0" text="Society name" />
+      <Label layoutX="394.0" layoutY="14.0" text="Orientation" />
+      <Label layoutX="582.0" layoutY="14.0" text="Office bearer" />
+      <Label layoutX="769.0" layoutY="14.0" text="Monthly membership fee" />
+      <Label layoutX="960.0" layoutY="14.0" text="Age group" />
+      <Button fx:id="butInsert" layoutX="21.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressInsert" text="Insert" />
+      <Button fx:id="butUpdate" layoutX="91.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressUpdate" text="Update" />
+      <Button fx:id="butDelete" layoutX="174.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressDelete" text="Delete" />
+      <Button fx:id="butSearch" layoutX="320.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressSearch" text="Search" />
+      <Button fx:id="butXLXS" layoutX="1079.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressXLXS" text="XLXS" />
+      <Button fx:id="butCSV" layoutX="1017.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressCSV" text="CSV" />
+      <TableView fx:id="tabSocieties" layoutX="22.0" layoutY="122.0" prefHeight="352.0" prefWidth="1112.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="180.0" text="ID" />
+          <TableColumn fx:id="colSocietyName" prefWidth="180.0" text="Society name" />
+           <TableColumn fx:id="colOrientation" prefWidth="180.0" text="Orientation" />
+           <TableColumn fx:id="colOfficeBearer" prefWidth="180.0" text="Office bearer" />
+           <TableColumn fx:id="colMonthlyMembershipFee" prefWidth="180.0" text="Monthly membership fee" />
+           <TableColumn fx:id="colAgeGroup" prefWidth="180.0" text="Age group" />
+        </columns>
+      </TableView>
+      <Label fx:id="labInfo" layoutX="429.0" layoutY="77.0" prefHeight="16.0" prefWidth="299.0" />
+      <Button fx:id="butClear" layoutX="252.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressClear" text="Clear" />
+      <Button layoutX="940.0" layoutY="72.0" mnemonicParsing="false" onAction="#goMainPlane" text="Main" />
+   </children>
+</AnchorPane>

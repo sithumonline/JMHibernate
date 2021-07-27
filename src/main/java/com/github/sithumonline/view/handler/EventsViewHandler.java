@@ -2,9 +2,7 @@ package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
 import com.github.sithumonline.controller.EventController;
-import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Event;
-import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -39,8 +37,8 @@ public class EventsViewHandler implements Initializable {
     public Button butClear;
 
     public void pressInsert() throws Exception {
-        if(!(txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())){
-            Event event = new Event(txtName.getText(),txtVenue.getText(),txtDate.getText(),txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
+        if (!(txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())) {
+            Event event = new Event(txtName.getText(), txtVenue.getText(), txtDate.getText(), txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
             EventController.addEvent(event);
             labInfo.setText("Event added");
             showEvent();
@@ -50,8 +48,8 @@ public class EventsViewHandler implements Initializable {
     }
 
     public void pressUpdate() throws Exception {
-        if(!(txtID.getText().isEmpty() && txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())){
-            Event event = new Event(txtID.getText(), txtName.getText(),txtVenue.getText(),txtDate.getText(),txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
+        if (!(txtID.getText().isEmpty() && txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())) {
+            Event event = new Event(txtID.getText(), txtName.getText(), txtVenue.getText(), txtDate.getText(), txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
             EventController.updateEvent(event);
             labInfo.setText("Event updated");
             showEvent();
@@ -61,7 +59,7 @@ public class EventsViewHandler implements Initializable {
     }
 
     public void pressDelete() throws Exception {
-        if(!txtID.getText().isEmpty()){
+        if (!txtID.getText().isEmpty()) {
             EventController.deleteEvent(txtID.getText());
             labInfo.setText("Event deleted");
             showEvent();

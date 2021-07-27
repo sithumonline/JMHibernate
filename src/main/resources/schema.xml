@@ -15,5 +15,6 @@
         <mapping class="com.github.sithumonline.entity.UsersQuery"/>
         <mapping class="com.github.sithumonline.entity.BeneficiaryLists"/>
         <mapping class="com.github.sithumonline.entity.Event"/>
+        <mapping class="com.github.sithumonline.entity.Societies"/>
     </session-factory>
 </hibernate-configuration>
