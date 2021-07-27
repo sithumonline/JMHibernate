@@ -28,4 +28,7 @@ public class MainPlaneHandler {
         App.setRoot("societies-view");
     }
 
+    public void switchToCropView() throws IOException {
+        App.setRoot("crop-view");
+    }
 }
