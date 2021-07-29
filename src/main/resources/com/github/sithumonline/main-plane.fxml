@@ -11,5 +11,6 @@
       <Button fx:id="butEvent" layoutX="229.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToEventView" text="Event" />
       <Button layoutX="379.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSocietyView" text="Society" />
       <Button layoutX="381.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToCropView" text="Crop" />
+      <Button layoutX="464.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToShopView" text="Shop" />
    </children>
 </AnchorPane>

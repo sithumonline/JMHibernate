@@ -31,4 +31,8 @@ public class MainPlaneHandler {
     public void switchToCropView() throws IOException {
         App.setRoot("crop-view");
     }
+
+    public void switchToShopView() throws IOException {
+        App.setRoot("shops-view");
+    }
 }
