@@ -11,10 +11,12 @@ public class MainPlaneHandler {
     private void switchToViewUsers() throws IOException {
         App.setRoot("users-view");
     }
+
     @FXML
     private void switchToSearchUsers() throws IOException {
         App.setRoot("users-search");
     }
+
     @FXML
     public void switchToBeneficiaryLists() throws IOException {
         App.setRoot("beneficiary-lists-view");
@@ -34,5 +36,9 @@ public class MainPlaneHandler {
 
     public void switchToShopView() throws IOException {
         App.setRoot("shops-view");
+    }
+
+    public void switchToFamilyView() throws IOException {
+        App.setRoot("family-view");
     }
 }
