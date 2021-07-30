@@ -7,6 +7,13 @@
    <children>
       <Button fx:id="butUsersView" layoutX="73.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToViewUsers" prefHeight="26.0" prefWidth="125.0" text="View Users" />
       <Button fx:id="butUsersSearch" layoutX="73.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSearchUsers" prefHeight="26.0" prefWidth="125.0" text="Search User" />
-      <Button layoutX="229.0" layoutY="140.0" mnemonicParsing="false" text="Beneficiary Lists" onAction="#switchToBeneficiaryLists"/>
+      <Button layoutX="229.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToBeneficiaryLists" text="Beneficiary Lists" />
+      <Button fx:id="butEvent" layoutX="229.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToEventView" text="Event" />
+      <Button layoutX="379.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSocietyView" text="Society" />
+      <Button layoutX="381.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToCropView" text="Crop" />
+      <Button layoutX="464.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToShopView" text="Shop" />
+      <Button layoutX="73.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToFamilyView" prefHeight="26.0" prefWidth="125.0" text="Family" />
+      <Button layoutX="226.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToPersonView" prefHeight="26.0" prefWidth="125.0" text="Person" />
+      <Button layoutX="381.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToHomeView" text="Home" />
    </children>
 </AnchorPane>

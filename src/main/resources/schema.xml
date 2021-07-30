@@ -14,5 +14,12 @@
         <mapping class="com.github.sithumonline.entity.Users"/>
         <mapping class="com.github.sithumonline.entity.UsersQuery"/>
         <mapping class="com.github.sithumonline.entity.BeneficiaryLists"/>
+        <mapping class="com.github.sithumonline.entity.Event"/>
+        <mapping class="com.github.sithumonline.entity.Societies"/>
+        <mapping class="com.github.sithumonline.entity.CropCultivation"/>
+        <mapping class="com.github.sithumonline.entity.Shops"/>
+        <mapping class="com.github.sithumonline.entity.Family"/>
+        <mapping class="com.github.sithumonline.entity.Person"/>
+        <mapping class="com.github.sithumonline.entity.Home"/>
     </session-factory>
 </hibernate-configuration>
