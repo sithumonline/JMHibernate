@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.PersonViewHandler">
+   <children>
+      <TextField fx:id="txtID" layoutX="21.0" layoutY="37.0" />
+      <TextField fx:id="txtName" layoutX="204.0" layoutY="37.0" />
+      <TextField fx:id="txtNIC" layoutX="394.0" layoutY="37.0" />
+      <TextField fx:id="txtGender" layoutX="582.0" layoutY="37.0" />
+      <TextField fx:id="txtAddress" layoutX="769.0" layoutY="37.0" />
+      <TextField fx:id="txtEmploymentStats" layoutX="960.0" layoutY="37.0" />
+      <Label layoutX="21.0" layoutY="14.0" text="ID" />
+      <Label layoutX="204.0" layoutY="14.0" text="Name with initials" />
+      <Label layoutX="394.0" layoutY="14.0" text="NIC" />
+      <Label layoutX="582.0" layoutY="14.0" text="Gender" />
+      <Label layoutX="769.0" layoutY="14.0" text="Address" />
+      <Label layoutX="960.0" layoutY="14.0" text="Employment stats" />
+      <Button fx:id="butInsert" layoutX="21.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressInsert" text="Insert" />
+      <Button fx:id="butUpdate" layoutX="91.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressUpdate" text="Update" />
+      <Button fx:id="butDelete" layoutX="174.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressDelete" text="Delete" />
+      <Button fx:id="butSearch" layoutX="320.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressSearch" text="Search" />
+      <Button fx:id="butXLXS" layoutX="1079.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressXLXS" text="XLXS" />
+      <Button fx:id="butCSV" layoutX="1017.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressCSV" text="CSV" />
+      <TableView fx:id="tabPerson" layoutX="22.0" layoutY="122.0" prefHeight="352.0" prefWidth="1112.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="180.0" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="180.0" text="Name with initials" />
+           <TableColumn fx:id="colNIC" prefWidth="180.0" text="NIC" />
+           <TableColumn fx:id="colGender" prefWidth="180.0" text="Gender" />
+           <TableColumn fx:id="colAddress" prefWidth="180.0" text="Address" />
+           <TableColumn fx:id="colEmploymentStats" prefWidth="180.0" text="Employment stats" />
+        </columns>
+      </TableView>
+      <Label fx:id="labInfo" layoutX="429.0" layoutY="77.0" prefHeight="16.0" prefWidth="299.0" />
+      <Button fx:id="butClear" layoutX="252.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressClear" text="Clear" />
+      <Button layoutX="940.0" layoutY="72.0" mnemonicParsing="false" onAction="#goMainPlane" text="Main" />
+   </children>
+</AnchorPane>

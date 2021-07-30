@@ -27,7 +27,7 @@ public class FamilyController {
         return eventService.getAllFamilies();
     }
 
-    public static ObservableList<Family> getAllFamilysById(String id)throws Exception{
+    public static ObservableList<Family> getAllFamiliesById(String id)throws Exception{
         FamilyBO eventService = (FamilyBO)  BOFactory.getInstance().getBOFactory(BOFactory.BOTypes.FAMILY);
         return eventService.getAllFamiliesById(id);
     }
