@@ -45,4 +45,8 @@ public class MainPlaneHandler {
     public void switchToPersonView() throws IOException {
         App.setRoot("person-view");
     }
+
+    public void switchToHomeView() throws IOException {
+        App.setRoot("home-view");
+    }
 }

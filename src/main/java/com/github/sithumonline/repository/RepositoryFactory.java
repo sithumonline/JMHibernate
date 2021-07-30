@@ -5,7 +5,7 @@ import com.github.sithumonline.repository.custom.impl.*;
 public class RepositoryFactory {
 
     public enum RepositoryFactoryTypes{
-        USER, USERQUERY, BENEFICIARYLISTS, EVENT, SOCIETY, CROP, SHOP, FAMILY, PERSON,
+        USER, USERQUERY, BENEFICIARYLISTS, EVENT, SOCIETY, CROP, SHOP, FAMILY, PERSON, HOME,
     }
 
     private RepositoryFactory() {
@@ -30,6 +30,7 @@ public class RepositoryFactory {
             case SHOP: return new ShopRepositoryImpl();
             case FAMILY: return new FamilyRepositoryImpl();
             case PERSON: return new PersonRepositoryImpl();
+            case HOME: return new HomeRepositoryImpl();
             default: return null;
         }
     }

@@ -20,5 +20,6 @@
         <mapping class="com.github.sithumonline.entity.Shops"/>
         <mapping class="com.github.sithumonline.entity.Family"/>
         <mapping class="com.github.sithumonline.entity.Person"/>
+        <mapping class="com.github.sithumonline.entity.Home"/>
     </session-factory>
 </hibernate-configuration>
