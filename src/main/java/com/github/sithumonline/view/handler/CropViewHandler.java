@@ -35,6 +35,8 @@ public class CropViewHandler implements Initializable {
     public TableColumn<CropCultivation, Integer> colEstimatedFertilizer;
     public TableColumn<CropCultivation, Integer> colReceivedFertilize;
     public Button butClear;
+    public TextField txtSearchBox;
+    private ObservableList<CropCultivation> out;
 
     public void pressInsert() throws Exception {
         if (!(txtCropType.getText().isEmpty() && txtNumberOfAcres.getText().isEmpty() && txtNumberOfCultivators.getText().isEmpty() && txtEstimatedFertilizer.getText().isEmpty() && txtReceivedFertilize.getText().isEmpty())) {
@@ -86,7 +88,13 @@ public class CropViewHandler implements Initializable {
         }
     }
 
-    public void pressSearch(ActionEvent actionEvent) {
+    public void pressSearch(ActionEvent actionEvent) throws Exception {
+        if (!(txtSearchBox.getText().isEmpty())) {
+            out = CropCultivationController.getAllCropCultivationsById(txtSearchBox.getText());
+            showCropCultivation();
+        } else {
+            labInfo.setText("Query Name not selected");
+        }
     }
 
     public void pressXLXS(ActionEvent actionEvent) {
@@ -96,7 +104,9 @@ public class CropViewHandler implements Initializable {
     }
 
     public void showCropCultivation() throws Exception {
-        ObservableList<CropCultivation> list = CropCultivationController.getCropCultivationList();
+        if (out == null || txtSearchBox.getText().isEmpty()){
+            out = CropCultivationController.getCropCultivationList();
+        }
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCropType.setCellValueFactory(new PropertyValueFactory<>("cropType"));
@@ -105,7 +115,7 @@ public class CropViewHandler implements Initializable {
         colEstimatedFertilizer.setCellValueFactory(new PropertyValueFactory<>("estimatedFertilizer"));
         colReceivedFertilize.setCellValueFactory(new PropertyValueFactory<>("receivedFertilize"));
 
-        tabCropCultivation.setItems(list);
+        tabCropCultivation.setItems(out);
     }
 
     public void goMainPlane() throws IOException {
