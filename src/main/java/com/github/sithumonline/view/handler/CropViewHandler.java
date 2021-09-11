@@ -1,6 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.WriterCsvXlxs;
 import com.github.sithumonline.controller.CropCultivationController;
 import com.github.sithumonline.entity.CropCultivation;
 import javafx.collections.ObservableList;
@@ -11,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CropViewHandler implements Initializable {
@@ -37,6 +40,7 @@ public class CropViewHandler implements Initializable {
     public Button butClear;
     public TextField txtSearchBox;
     private ObservableList<CropCultivation> out;
+    private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
         if (!(txtCropType.getText().isEmpty() && txtNumberOfAcres.getText().isEmpty() && txtNumberOfCultivators.getText().isEmpty() && txtEstimatedFertilizer.getText().isEmpty() && txtReceivedFertilize.getText().isEmpty())) {
@@ -100,11 +104,26 @@ public class CropViewHandler implements Initializable {
     public void pressXLXS(ActionEvent actionEvent) {
     }
 
-    public void pressCSV(ActionEvent actionEvent) {
+    public void pressCSV(ActionEvent actionEvent) throws IOException {
+        List<String[]> csvData = new ArrayList<>();
+        for (CropCultivation cropCultivation : out
+        ) {
+            csvData.add(
+                    new String[]{
+                            String.valueOf(cropCultivation.getId()),
+                            cropCultivation.getCropType(),
+                            String.valueOf(cropCultivation.getNumberOfAcres()),
+                            String.valueOf(cropCultivation.getNumberOfCultivators()),
+                            String.valueOf(cropCultivation.getEstimatedFertilizer()),
+                            String.valueOf(cropCultivation.getReceivedFertilize())
+
+                    });
+        }
+        writerCsvXlxs.writeCsv(csvData);
     }
 
     public void showCropCultivation() throws Exception {
-        if (out == null || txtSearchBox.getText().isEmpty()){
+        if (out == null || txtSearchBox.getText().isEmpty()) {
             out = CropCultivationController.getCropCultivationList();
         }
 

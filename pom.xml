@@ -30,6 +30,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.5.5.Final</version>
         </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
