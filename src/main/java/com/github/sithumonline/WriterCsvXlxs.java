@@ -25,9 +25,8 @@ public class WriterCsvXlxs {
 
     public void writeXlxs() throws IOException {
         File excel = new File(userDir + "/Out.xlsx");
-        FileInputStream fis = new FileInputStream(excel);
-        XSSFWorkbook book = new XSSFWorkbook(fis);
-        XSSFSheet sheet = book.getSheetAt(0);
+        XSSFWorkbook book = new XSSFWorkbook();
+        XSSFSheet sheet = book.createSheet("Nexter Data");
 
         Map<String, Object[]> data = new HashMap<String, Object[]>();
         data.put("7", new Object[]{7d, "Sonya", "75K", "SALES", "Rupert"});
@@ -64,6 +63,7 @@ public class WriterCsvXlxs {
         FileOutputStream os = new FileOutputStream(excel);
         book.write(os);
         System.out.println("Writing on XLSX file Finished ...");
+        book.close();
 
     }
 
