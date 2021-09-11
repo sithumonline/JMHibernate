@@ -12,9 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CropViewHandler implements Initializable {
     public TextField txtID;
@@ -102,7 +100,24 @@ public class CropViewHandler implements Initializable {
     }
 
     public void pressXLXS(ActionEvent actionEvent) throws IOException {
-        writerCsvXlxs.writeXlxs();
+        int i = 1;
+        Map<String, Object[]> data = new HashMap<>();
+        for (CropCultivation cropCultivation : out
+        ) {
+            data.put(String.valueOf(i),
+                    new Object[]{
+                            String.valueOf(i),
+                            String.valueOf(cropCultivation.getId()),
+                            cropCultivation.getCropType(),
+                            String.valueOf(cropCultivation.getNumberOfAcres()),
+                            String.valueOf(cropCultivation.getNumberOfCultivators()),
+                            String.valueOf(cropCultivation.getEstimatedFertilizer()),
+                            String.valueOf(cropCultivation.getReceivedFertilize())
+
+                    });
+            i++;
+        }
+        writerCsvXlxs.writeXlxs(data);
     }
 
     public void pressCSV(ActionEvent actionEvent) throws IOException {

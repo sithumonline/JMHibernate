@@ -23,15 +23,10 @@ public class WriterCsvXlxs {
         }
     }
 
-    public void writeXlxs() throws IOException {
+    public void writeXlxs(Map<String, Object[]> data) throws IOException {
         File excel = new File(userDir + "/Out.xlsx");
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet sheet = book.createSheet("Nexter Data");
-
-        Map<String, Object[]> data = new HashMap<String, Object[]>();
-        data.put("7", new Object[]{7d, "Sonya", "75K", "SALES", "Rupert"});
-        data.put("8", new Object[]{8d, "Kris", "85K", "SALES", "Rupert"});
-        data.put("9", new Object[]{9d, "Dave", "90K", "SALES", "Rupert"});
 
         // Set to Iterate and add rows into XLS file
         Set<String> newRows = data.keySet();
