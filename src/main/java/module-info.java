@@ -7,6 +7,8 @@ module com.github.sithumonline {
     requires org.hibernate.orm.core;
     requires java.rmi;
     requires opencsv;
+    requires poi.ooxml;
+    requires poi;
 
     opens com.github.sithumonline to javafx.fxml;
     opens com.github.sithumonline.view.handler to javafx.fxml;

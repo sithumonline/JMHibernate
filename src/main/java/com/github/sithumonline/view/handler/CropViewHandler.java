@@ -101,7 +101,8 @@ public class CropViewHandler implements Initializable {
         }
     }
 
-    public void pressXLXS(ActionEvent actionEvent) {
+    public void pressXLXS(ActionEvent actionEvent) throws IOException {
+        writerCsvXlxs.writeXlxs();
     }
 
     public void pressCSV(ActionEvent actionEvent) throws IOException {
