@@ -6,9 +6,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,16 +29,10 @@ public class WriterCsvXlxs {
         File excel = new File(userDir + "/Out.xlsx");
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet sheet = book.createSheet("Nexter Data");
-
-        // Set to Iterate and add rows into XLS file
         Set<String> newRows = data.keySet();
-
-        // get the last row number to append new data
         int rownum = sheet.getLastRowNum();
 
         for (String key : newRows) {
-
-            // Creating a new Row in existing XLSX sheet
             Row row = sheet.createRow(rownum++);
             Object[] objArr = data.get(key);
             int cellnum = 0;
@@ -54,7 +50,6 @@ public class WriterCsvXlxs {
             }
         }
 
-        // open an OutputStream to save written data into XLSX file
         FileOutputStream os = new FileOutputStream(excel);
         book.write(os);
         System.out.println("Writing on XLSX file Finished ...");
