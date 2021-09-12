@@ -20,7 +20,6 @@
       <Button fx:id="butInsert" layoutX="21.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressInsert" text="Insert" />
       <Button fx:id="butUpdate" layoutX="91.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressUpdate" text="Update" />
       <Button fx:id="butDelete" layoutX="174.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressDelete" text="Delete" />
-      <Button fx:id="butSearchTable" layoutX="320.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressSearch" text="Search" />
       <Button fx:id="butXLXS" layoutX="1079.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressXLXS" text="XLXS" />
       <Button fx:id="butCSV" layoutX="1017.0" layoutY="72.0" mnemonicParsing="false" onAction="#pressCSV" text="CSV" />
       <TableView fx:id="tabCropCultivation" layoutX="22.0" layoutY="122.0" prefHeight="352.0" prefWidth="1112.0">
