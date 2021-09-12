@@ -113,7 +113,6 @@ public class CropViewHandler implements Initializable {
                             String.valueOf(cropCultivation.getNumberOfCultivators()),
                             String.valueOf(cropCultivation.getEstimatedFertilizer()),
                             String.valueOf(cropCultivation.getReceivedFertilize())
-
                     });
             i++;
         }
@@ -132,7 +131,6 @@ public class CropViewHandler implements Initializable {
                             String.valueOf(cropCultivation.getNumberOfCultivators()),
                             String.valueOf(cropCultivation.getEstimatedFertilizer()),
                             String.valueOf(cropCultivation.getReceivedFertilize())
-
                     });
         }
         writerCsvXlxs.writeCsv(csvData);
