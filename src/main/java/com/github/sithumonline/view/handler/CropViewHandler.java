@@ -1,6 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.WriterCsvXlxs;
 import com.github.sithumonline.controller.CropCultivationController;
 import com.github.sithumonline.entity.CropCultivation;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CropViewHandler implements Initializable {
     public TextField txtID;
@@ -35,6 +36,9 @@ public class CropViewHandler implements Initializable {
     public TableColumn<CropCultivation, Integer> colEstimatedFertilizer;
     public TableColumn<CropCultivation, Integer> colReceivedFertilize;
     public Button butClear;
+    public TextField txtSearchBox;
+    private ObservableList<CropCultivation> out;
+    private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
         if (!(txtCropType.getText().isEmpty() && txtNumberOfAcres.getText().isEmpty() && txtNumberOfCultivators.getText().isEmpty() && txtEstimatedFertilizer.getText().isEmpty() && txtReceivedFertilize.getText().isEmpty())) {
@@ -86,17 +90,56 @@ public class CropViewHandler implements Initializable {
         }
     }
 
-    public void pressSearch(ActionEvent actionEvent) {
+    public void pressSearch(ActionEvent actionEvent) throws Exception {
+        if (!(txtSearchBox.getText().isEmpty())) {
+            out = CropCultivationController.getAllCropCultivationsById(txtSearchBox.getText());
+            showCropCultivation();
+        } else {
+            labInfo.setText("Query Name not selected");
+        }
     }
 
-    public void pressXLXS(ActionEvent actionEvent) {
+    public void pressXLXS(ActionEvent actionEvent) throws IOException {
+        int i = 1;
+        Map<String, Object[]> data = new HashMap<>();
+        for (CropCultivation cropCultivation : out
+        ) {
+            data.put(String.valueOf(i),
+                    new Object[]{
+                            String.valueOf(i),
+                            String.valueOf(cropCultivation.getId()),
+                            cropCultivation.getCropType(),
+                            String.valueOf(cropCultivation.getNumberOfAcres()),
+                            String.valueOf(cropCultivation.getNumberOfCultivators()),
+                            String.valueOf(cropCultivation.getEstimatedFertilizer()),
+                            String.valueOf(cropCultivation.getReceivedFertilize())
+                    });
+            i++;
+        }
+        writerCsvXlxs.writeXlxs(data);
     }
 
-    public void pressCSV(ActionEvent actionEvent) {
+    public void pressCSV(ActionEvent actionEvent) throws IOException {
+        List<String[]> csvData = new ArrayList<>();
+        for (CropCultivation cropCultivation : out
+        ) {
+            csvData.add(
+                    new String[]{
+                            String.valueOf(cropCultivation.getId()),
+                            cropCultivation.getCropType(),
+                            String.valueOf(cropCultivation.getNumberOfAcres()),
+                            String.valueOf(cropCultivation.getNumberOfCultivators()),
+                            String.valueOf(cropCultivation.getEstimatedFertilizer()),
+                            String.valueOf(cropCultivation.getReceivedFertilize())
+                    });
+        }
+        writerCsvXlxs.writeCsv(csvData);
     }
 
     public void showCropCultivation() throws Exception {
-        ObservableList<CropCultivation> list = CropCultivationController.getCropCultivationList();
+        if (out == null || txtSearchBox.getText().isEmpty()) {
+            out = CropCultivationController.getCropCultivationList();
+        }
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCropType.setCellValueFactory(new PropertyValueFactory<>("cropType"));
@@ -105,7 +148,7 @@ public class CropViewHandler implements Initializable {
         colEstimatedFertilizer.setCellValueFactory(new PropertyValueFactory<>("estimatedFertilizer"));
         colReceivedFertilize.setCellValueFactory(new PropertyValueFactory<>("receivedFertilize"));
 
-        tabCropCultivation.setItems(list);
+        tabCropCultivation.setItems(out);
     }
 
     public void goMainPlane() throws IOException {

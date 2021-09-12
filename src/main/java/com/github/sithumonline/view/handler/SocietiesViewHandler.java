@@ -1,6 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.WriterCsvXlxs;
 import com.github.sithumonline.controller.SocietyController;
 import com.github.sithumonline.entity.Societies;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SocietiesViewHandler implements Initializable {
     public TextField txtID;
@@ -35,6 +36,9 @@ public class SocietiesViewHandler implements Initializable {
     public TableColumn<Societies, Integer> colAgeGroup;
     public Label labInfo;
     public Button butClear;
+    public TextField txtSearchBox;
+    private ObservableList<Societies> out;
+    private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
         if (!(txtName.getText().isEmpty() && txtOrientation.getText().isEmpty() && txtOfficeBearer.getText().isEmpty() && txtMonthlyMembershipFee.getText().isEmpty() && txtAgeGroup.getText().isEmpty())) {
@@ -86,17 +90,56 @@ public class SocietiesViewHandler implements Initializable {
         }
     }
 
-    public void pressSearch(ActionEvent actionEvent) {
+    public void pressSearch(ActionEvent actionEvent) throws Exception {
+        if (!(txtSearchBox.getText().isEmpty())) {
+            out = SocietyController.getAllSocietysById(txtSearchBox.getText());
+            showSocieties();
+        } else {
+            labInfo.setText("Query Name not selected");
+        }
     }
 
-    public void pressXLXS(ActionEvent actionEvent) {
+    public void pressXLXS(ActionEvent actionEvent) throws IOException {
+        int i = 1;
+        Map<String, Object[]> data = new HashMap<>();
+        for (Societies society : out
+        ) {
+            data.put(String.valueOf(i),
+                    new Object[]{
+                            String.valueOf(i),
+                            String.valueOf(society.getId()),
+                            society.getName(),
+                            society.getOrientation(),
+                            society.getOfficeBearer(),
+                            String.valueOf(society.getMonthlyMembershipFee()),
+                            society.getAgeGroup()
+                    });
+            i++;
+        }
+        writerCsvXlxs.writeXlxs(data);
     }
 
-    public void pressCSV(ActionEvent actionEvent) {
+    public void pressCSV(ActionEvent actionEvent) throws IOException {
+        List<String[]> csvData = new ArrayList<>();
+        for (Societies society : out
+        ) {
+            csvData.add(
+                    new String[]{
+                            String.valueOf(society.getId()),
+                            society.getName(),
+                            society.getOrientation(),
+                            society.getOfficeBearer(),
+                            String.valueOf(society.getMonthlyMembershipFee()),
+                            society.getAgeGroup()
+                    });
+        }
+        writerCsvXlxs.writeCsv(csvData);
     }
 
     public void showSocieties() throws Exception {
-        ObservableList<Societies> list = SocietyController.getSocietyList();
+        if (out == null || txtSearchBox.getText().isEmpty()) {
+            out = SocietyController.getSocietyList();
+        }
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colSocietyName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -105,7 +148,7 @@ public class SocietiesViewHandler implements Initializable {
         colMonthlyMembershipFee.setCellValueFactory(new PropertyValueFactory<>("monthlyMembershipFee"));
         colAgeGroup.setCellValueFactory(new PropertyValueFactory<>("ageGroup"));
 
-        tabSocieties.setItems(list);
+        tabSocieties.setItems(out);
     }
 
     public void goMainPlane() throws IOException {
