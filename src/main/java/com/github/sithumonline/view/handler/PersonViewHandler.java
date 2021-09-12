@@ -1,6 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.WriterCsvXlxs;
 import com.github.sithumonline.controller.PersonController;
 import com.github.sithumonline.entity.Person;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PersonViewHandler implements Initializable {
     public TextField txtID;
@@ -19,7 +20,7 @@ public class PersonViewHandler implements Initializable {
     public TextField txtNIC;
     public TextField txtGender;
     public TextField txtAddress;
-    public TextField txtEmploymentStats;   
+    public TextField txtEmploymentStats;
     public Label labInfo;
     public Button butInsert;
     public Button butUpdate;
@@ -35,7 +36,10 @@ public class PersonViewHandler implements Initializable {
     public TableColumn<Person, Integer> colAddress;
     public TableColumn<Person, Integer> colEmploymentStats;
     public Button butClear;
-    
+    public TextField txtSearchBox;
+    private ObservableList<Person> out;
+    private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
+
     public void pressInsert() throws Exception {
         if (!(txtName.getText().isEmpty() && txtNIC.getText().isEmpty() && txtGender.getText().isEmpty() && txtAddress.getText().isEmpty() && txtEmploymentStats.getText().isEmpty())) {
             Person person = new Person(txtName.getText(), txtNIC.getText(), txtGender.getText(), txtAddress.getText(), txtEmploymentStats.getText());
@@ -86,17 +90,56 @@ public class PersonViewHandler implements Initializable {
         }
     }
 
-    public void pressSearch(ActionEvent actionEvent) {
+    public void pressSearch(ActionEvent actionEvent) throws Exception {
+        if (!(txtSearchBox.getText().isEmpty())) {
+            out = PersonController.getAllPersonsById(txtSearchBox.getText());
+            showPerson();
+        } else {
+            labInfo.setText("Query Name not selected");
+        }
     }
 
-    public void pressXLXS(ActionEvent actionEvent) {
+    public void pressXLXS(ActionEvent actionEvent) throws IOException {
+        int i = 1;
+        Map<String, Object[]> data = new HashMap<>();
+        for (Person person : out
+        ) {
+            data.put(String.valueOf(i),
+                    new Object[]{
+                            String.valueOf(i),
+                            String.valueOf(person.getId()),
+                            person.getName(),
+                            person.getNic(),
+                            person.getGender(),
+                            person.getAddress(),
+                            person.getEmploymentStats()
+                    });
+            i++;
+        }
+        writerCsvXlxs.writeXlxs(data);
     }
 
-    public void pressCSV(ActionEvent actionEvent) {
+    public void pressCSV(ActionEvent actionEvent) throws IOException {
+        List<String[]> csvData = new ArrayList<>();
+        for (Person person : out
+        ) {
+            csvData.add(
+                    new String[]{
+                            String.valueOf(person.getId()),
+                            person.getName(),
+                            person.getNic(),
+                            person.getGender(),
+                            person.getAddress(),
+                            person.getEmploymentStats()
+                    });
+        }
+        writerCsvXlxs.writeCsv(csvData);
     }
 
     public void showPerson() throws Exception {
-        ObservableList<Person> list = PersonController.getPersonList();
+        if (out == null || txtSearchBox.getText().isEmpty()) {
+            out = PersonController.getPersonList();
+        }
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -105,7 +148,7 @@ public class PersonViewHandler implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colEmploymentStats.setCellValueFactory(new PropertyValueFactory<>("employmentStats"));
 
-        tabPerson.setItems(list);
+        tabPerson.setItems(out);
     }
 
     public void goMainPlane() throws IOException {
