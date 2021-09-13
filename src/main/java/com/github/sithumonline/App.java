@@ -32,4 +32,8 @@ public class App extends Application {
         launch();
     }
 
+    public void setUserData(Object o) {
+        scene.setUserData(o);
+    }
+
 }

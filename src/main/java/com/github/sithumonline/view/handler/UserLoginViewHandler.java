@@ -3,6 +3,7 @@ package com.github.sithumonline.view.handler;
 import com.github.sithumonline.App;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class UserLoginViewHandler {
     public Button butLogin;
     public Button butCreateAccount;
     public Button butForgetPassword;
+    public Label labInfo;
 
     public void pressLogin(ActionEvent actionEvent) {
     }
