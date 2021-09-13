@@ -1,0 +1,29 @@
+package com.github.sithumonline.view.handler;
+
+import com.github.sithumonline.App;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+import java.io.IOException;
+
+public class UserLoginViewHandler {
+
+    public TextField txtUsername;
+    public TextField txtPassword;
+    public Button butLogin;
+    public Button butCreateAccount;
+    public Button butForgetPassword;
+
+    public void pressLogin(ActionEvent actionEvent) {
+    }
+
+    public void pressCreateAccount(ActionEvent actionEvent) throws IOException {
+        App.setRoot("users-view");
+    }
+
+    public void pressForgetPassword(ActionEvent actionEvent) throws IOException {
+        App.setRoot("main-plane");
+    }
+
+}

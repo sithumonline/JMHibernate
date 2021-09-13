@@ -83,7 +83,7 @@ public class UsersViewHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            showUser();
+//            showUser();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -70,15 +70,15 @@
                 <RowConstraints/>
             </rowConstraints>
         </GridPane>
-        <TableView fx:id="tabUser" prefHeight="200.0" prefWidth="528.0" GridPane.columnIndex="3">
-            <columns>
-                <TableColumn fx:id="tabUserId" prefWidth="75.0" text="user_id"/>
-                <TableColumn fx:id="tabUsername" prefWidth="90.0" text="username"/>
-                <TableColumn fx:id="tabPassword" prefWidth="87.0" text="password"/>
-                <TableColumn fx:id="tabFullname" minWidth="0.0" prefWidth="106.0" text="fullname"/>
-                <TableColumn fx:id="tabEmail" prefWidth="167.0" text="email"/>
-            </columns>
-        </TableView>
+<!--        <TableView fx:id="tabUser" prefHeight="200.0" prefWidth="528.0" GridPane.columnIndex="3">-->
+<!--            <columns>-->
+<!--                <TableColumn fx:id="tabUserId" prefWidth="75.0" text="user_id"/>-->
+<!--                <TableColumn fx:id="tabUsername" prefWidth="90.0" text="username"/>-->
+<!--                <TableColumn fx:id="tabPassword" prefWidth="87.0" text="password"/>-->
+<!--                <TableColumn fx:id="tabFullname" minWidth="0.0" prefWidth="106.0" text="fullname"/>-->
+<!--                <TableColumn fx:id="tabEmail" prefWidth="167.0" text="email"/>-->
+<!--            </columns>-->
+<!--        </TableView>-->
     </children>
     <columnConstraints>
         <ColumnConstraints/>
