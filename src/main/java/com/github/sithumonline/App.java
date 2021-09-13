@@ -1,5 +1,6 @@
 package com.github.sithumonline;
 
+import com.github.sithumonline.entity.Users;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Users user;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,8 +34,12 @@ public class App extends Application {
         launch();
     }
 
-    public void setUserData(Object o) {
-        scene.setUserData(o);
+    public static void setUser(Users user) {
+        App.user = user;
+    }
+
+    public static Users getUser() {
+        return user;
     }
 
 }

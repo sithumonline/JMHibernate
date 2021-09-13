@@ -16,7 +16,8 @@
       <Button layoutX="226.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToPersonView" prefHeight="26.0" prefWidth="125.0" text="Person" />
       <Button layoutX="381.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToHomeView" text="Home" />
       <Button layoutX="464.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToLoginView" text="Login" />
-      <Button  layoutX="459.0" layoutY="61.0" mnemonicParsing="false" onAction="#pressProfile" text="Profile" />
+      <Button layoutX="459.0" layoutY="61.0" mnemonicParsing="false" onAction="#pressProfile" text="Profile" />
       <ComboBox fx:id="comProfileList" layoutX="292.0" layoutY="61.0" prefWidth="150.0" />
+      <Label fx:id="labInfo" layoutX="333.0" layoutY="218.0" prefHeight="16.0" prefWidth="190.0" />
    </children>
 </AnchorPane>

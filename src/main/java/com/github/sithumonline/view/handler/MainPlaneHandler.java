@@ -4,10 +4,10 @@ import com.github.sithumonline.App;
 import com.github.sithumonline.controller.UserController;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,11 +15,13 @@ import java.util.ResourceBundle;
 
 public class MainPlaneHandler implements Initializable {
     public ComboBox comProfileList;
+    public Label labInfo;
+    private ObservableList<Users> list;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ObservableList<Users> list = UserController.getUserList();
+            list = UserController.getUserList();
 
             for (Users user : list
             ) {
@@ -77,7 +79,18 @@ public class MainPlaneHandler implements Initializable {
         App.setRoot("login-view");
     }
 
-    public void pressProfile(ActionEvent actionEvent) {
+    public void pressProfile() throws IOException {
+        if (!(comProfileList.getSelectionModel().isEmpty())) {
+            for (Users user : list
+            ) {
+                if (comProfileList.getValue().toString().equals(user.getUsername())) {
+                    App.setUser(user);
+                    App.setRoot("users-view");
+                }
+            }
+        } else {
+            labInfo.setText("User Name not selected");
+        }
     }
 
 }

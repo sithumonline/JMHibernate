@@ -83,10 +83,18 @@ public class UsersViewHandler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-//            showUser();
+            showUserInit(App.getUser());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showUserInit(Users user) {
+        txtUsername.setText(user.getUsername());
+        txtFullname.setText(user.getFullname());
+        txtPassword.setText(user.getPassword());
+        txtEmail.setText(user.getEmail());
+        txtUserId.setText(user.getUserId());
     }
 
     public void showUser() throws Exception {
