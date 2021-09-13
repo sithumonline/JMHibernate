@@ -104,7 +104,7 @@ CREATE TABLE `Societies` (
 DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
                          `user_id` int(11) NOT NULL AUTO_INCREMENT,
-                         `username` varchar(45) NOT NULL,
+                         `username` varchar(45) NOT NULL UNIQUE,
                          `password` varchar(45) NOT NULL,
                          `fullname` varchar(45) NOT NULL,
                          `email` varchar(45) NOT NULL,
