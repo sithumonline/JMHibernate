@@ -45,7 +45,6 @@ public class UsersViewHandler implements Initializable {
             Users user = new Users(txtUsername.getText(), txtPassword.getText(), txtFullname.getText(), txtEmail.getText());
             UserController.addUser(user);
             labInfo.setText("TextField added");
-            showUser();
         } else {
             labInfo.setText("TextField is empty");
         }
@@ -55,7 +54,7 @@ public class UsersViewHandler implements Initializable {
         if (!txtUserId.getText().isEmpty()) {
             UserController.deleteUser(txtUserId.getText());
             labInfo.setText("TextField deleted");
-            showUser();
+            App.setRoot("login-view");
         } else {
             labInfo.setText("username is empty");
         }
@@ -66,7 +65,6 @@ public class UsersViewHandler implements Initializable {
             Users user = new Users(txtUserId.getText(), txtUsername.getText(), txtPassword.getText(), txtFullname.getText(), txtEmail.getText());
             UserController.updateUser(user);
             labInfo.setText("TextField updated");
-            showUser();
         } else {
             labInfo.setText("TextField is empty");
         }
