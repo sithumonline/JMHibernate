@@ -15,5 +15,6 @@
       <Button layoutX="73.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToFamilyView" prefHeight="26.0" prefWidth="125.0" text="Family" />
       <Button layoutX="226.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToPersonView" prefHeight="26.0" prefWidth="125.0" text="Person" />
       <Button layoutX="381.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToHomeView" text="Home" />
+      <Button layoutX="464.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToLoginView" text="Login" />
    </children>
 </AnchorPane>
