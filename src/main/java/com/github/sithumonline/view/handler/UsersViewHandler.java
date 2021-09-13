@@ -1,18 +1,15 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
-import com.github.sithumonline.WriterCsvXlxs;
+import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.UserController;
-import com.github.sithumonline.entity.Home;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
