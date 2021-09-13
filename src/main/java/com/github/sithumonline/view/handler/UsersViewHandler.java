@@ -1,16 +1,20 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.WriterCsvXlxs;
 import com.github.sithumonline.controller.UserController;
+import com.github.sithumonline.entity.Home;
 import com.github.sithumonline.entity.Users;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class UsersViewHandler implements Initializable {
     @FXML
@@ -39,6 +43,8 @@ public class UsersViewHandler implements Initializable {
     private TableColumn<Users, String> tabFullname;
     @FXML
     private TableColumn<Users, String> tabEmail;
+    private ObservableList<Users> out;
+    private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
         if (!(txtUsername.getText().isEmpty() && txtPassword.getText().isEmpty() && txtFullname.getText().isEmpty() && txtEmail.getText().isEmpty())) {
@@ -110,4 +116,46 @@ public class UsersViewHandler implements Initializable {
     public void goMainPlane() throws Exception {
         App.setRoot("main-plane");
     }
+
+    public void pressXLXS() throws Exception {
+        if (out == null) {
+            out = UserController.getUserList();
+        }
+        int i = 1;
+        Map<String, Object[]> data = new HashMap<>();
+        for (Users user : out
+        ) {
+            data.put(String.valueOf(i),
+                    new Object[]{
+                            String.valueOf(i),
+                            user.getUserId(),
+                            user.getUsername(),
+                            user.getPassword(),
+                            user.getFullname(),
+                            user.getEmail()
+                    });
+            i++;
+        }
+        writerCsvXlxs.writeXlxs(data);
+    }
+
+    public void pressCSV() throws Exception {
+        if (out == null) {
+            out = UserController.getUserList();
+        }
+        List<String[]> csvData = new ArrayList<>();
+        for (Users user : out
+        ) {
+            csvData.add(
+                    new String[]{
+                            user.getUserId(),
+                            user.getUsername(),
+                            user.getPassword(),
+                            user.getFullname(),
+                            user.getEmail()
+                    });
+        }
+        writerCsvXlxs.writeCsv(csvData);
+    }
+
 }
