@@ -1,7 +1,7 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
-import com.github.sithumonline.WriterCsvXlxs;
+import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.SocietyController;
 import com.github.sithumonline.entity.Societies;
 import javafx.collections.ObservableList;

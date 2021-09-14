@@ -20,4 +20,7 @@ public interface UserBO extends SuperBO{
     ObservableList<Users> getAllUsers()throws Exception;
 
     ObservableList<Users> getAllUsersById(String id) throws Exception;
+
+    boolean checkPassword(String userName, String password) throws Exception;
+
 }
