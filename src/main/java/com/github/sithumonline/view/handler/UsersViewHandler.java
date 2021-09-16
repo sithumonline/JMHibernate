@@ -48,6 +48,7 @@ public class UsersViewHandler implements Initializable {
             Users user = new Users(txtUsername.getText(), txtPassword.getText(), txtFullname.getText(), txtEmail.getText());
             UserController.addUser(user);
             labInfo.setText("TextField added");
+            goLoginView();
         } else {
             labInfo.setText("TextField is empty");
         }
@@ -112,6 +113,10 @@ public class UsersViewHandler implements Initializable {
 
     public void goMainPlane() throws Exception {
         App.setRoot("main-plane");
+    }
+
+    public void goLoginView() throws Exception {
+        App.setRoot("login-view");
     }
 
     public void pressXLXS() throws Exception {
