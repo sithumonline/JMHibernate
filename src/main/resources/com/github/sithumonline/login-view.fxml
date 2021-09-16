@@ -19,7 +19,7 @@
          <Image url="@../../../image/login_logo.png" />
       </image>
    </ImageView>
-   <JFXTextField fx:id="txtUserName" focusColor="#1b76ff" labelFloat="true" layoutX="400.0" layoutY="210.0" prefHeight="25.0" prefWidth="350.0" promptText="Username" style="-fx-text-inner-color:#1b76ff ; -fx-prompt-text-fill: gray;" unFocusColor="lightblue">
+   <JFXTextField fx:id="txtUsername" focusColor="#1b76ff" labelFloat="true" layoutX="400.0" layoutY="210.0" prefHeight="25.0" prefWidth="350.0" promptText="Username" style="-fx-text-inner-color:#1b76ff ; -fx-prompt-text-fill: gray;" unFocusColor="lightblue">
       <font>
          <Font size="18.0" />
       </font>
