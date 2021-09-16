@@ -69,6 +69,7 @@
                     <mainClass>com.github.sithumonline.App</mainClass>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

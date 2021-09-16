@@ -1,0 +1,33 @@
+.JFXButton{
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+#butInsert{
+    -fx-background-color: #315400;
+
+}
+#butUpdate{
+    -fx-background-color: #9f3a00;
+}
+#butDelete{
+    -fx-background-color: #820505;
+    -fx-text-fill: white;
+}
+#butClear{
+    -fx-background-color: #977100;
+
+}
+#butXLXS{
+    -fx-background-color: #1473e6;
+    -fx-text-fill: white;
+}
+#butCSV{
+    -fx-background-color: #1473e6;
+    -fx-text-fill: white;
+}
+
+#butSearch{
+    -fx-background-color: #000d87;
+    -fx-text-fill: white;
+}
