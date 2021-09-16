@@ -31,7 +31,7 @@ public class UserLoginViewHandler {
     }
 
     public void pressCreateAccount(ActionEvent actionEvent) throws IOException {
-        App.setRoot("users-view");
+        App.setRoot("user-create-view");
     }
 
     public void pressForgetPassword(ActionEvent actionEvent) throws IOException {
