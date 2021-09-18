@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minHeight="585.0" minWidth="550.0" prefHeight="585.0" prefWidth="1090.0" style="-fx-background-color: #ecf0f1;" styleClass="mainFxmlClass" stylesheets="@function-style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.UsersViewHandler">
+    <stylesheets>
+        <URL value="@function-style.css" />
+        <URL value="@button-style.css" />
+    </stylesheets>
+    <children>
+        <Text fill="#1473e6" fontSmoothingType="LCD" layoutX="22.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create account" textAlignment="LEFT">
+            <font>
+                <Font name="Calibri Bold" size="46.0" />
+            </font>
+        </Text>
+        <Label layoutY="505.0" opacity="0.9" prefHeight="80.0" prefWidth="1090.0" style="-fx-background-color: #1b76ff;" />
+        <JFXTextField fx:id="txtUsername" focusColor="#1b76ff" labelFloat="true" layoutX="415.0" layoutY="129.0" prefHeight="38.0" prefWidth="259.0" promptText="Username" style="-fx-prompt-text-fill: gray; -fx-text-inner-color: #1b76ff;" unFocusColor="LIGHTBLUE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtFullname" focusColor="#1b76ff" labelFloat="true" layoutX="415.0" layoutY="209.0" prefHeight="38.0" prefWidth="259.0" promptText="Full name" style="-fx-prompt-text-fill: gray; -fx-text-inner-color: #1b76ff;" unFocusColor="LIGHTBLUE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtPassword" focusColor="#1b76ff" labelFloat="true" layoutX="415.0" layoutY="293.0" prefHeight="38.0" prefWidth="259.0" promptText="Password" style="-fx-prompt-text-fill: gray; -fx-text-inner-color: #1b76ff;" unFocusColor="LIGHTBLUE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtEmail" focusColor="#1b76ff" labelFloat="true" layoutX="415.0" layoutY="366.0" prefHeight="38.0" prefWidth="259.0" promptText="Email" style="-fx-prompt-text-fill: gray; -fx-text-inner-color: #1b76ff;" unFocusColor="LIGHTBLUE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXTextField>
+
+        <JFXButton fx:id="butInsert" buttonType="RAISED" layoutX="437.0" layoutY="429.0" onAction="#pressInsert" prefHeight="64.0" prefWidth="215.0" style="-fx-background-color: #315400;" styleClass="JFXButton" stylesheets="@function-style.css" text="Create Account" textFill="WHITE">
+            <font>
+                <Font name="Calibri Bold" size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXButton fx:id="butClear" buttonType="RAISED" layoutX="751.0" layoutY="429.0" onAction="#pressClear" prefHeight="64.0" prefWidth="167.0" style="-fx-background-color: #977100;" styleClass="JFXButton" text="Clear" textFill="WHITE">
+            <font>
+                <Font name="Calibri Bold" size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXButton fx:id="btnMainMenu" buttonType="RAISED" cache="true" contentDisplay="TOP" layoutX="835.0" layoutY="31.0" onAction="#goLoginView" prefHeight="64.0" prefWidth="239.0" style="-fx-background-color: #1473e6;" styleClass="JFXButton" text="Back to Login page" textFill="WHITE">
+            <font>
+                <Font name="Calibri Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </JFXButton>
+
+        <Label fx:id="labInfo" layoutX="432.0" layoutY="34.0" prefHeight="38.0" prefWidth="167.0" textFill="RED">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font></Label>
+
+    </children>
+</AnchorPane>

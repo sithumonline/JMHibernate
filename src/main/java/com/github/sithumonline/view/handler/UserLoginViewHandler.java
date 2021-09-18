@@ -20,6 +20,7 @@ public class UserLoginViewHandler {
 
     public void pressLogin(ActionEvent actionEvent) throws Exception {
         if (!(txtUsername.getText().isEmpty() && txtPassword.getText().isEmpty())) {
+            System.out.println(txtUsername.getText() + "  " + txtPassword.getText());
             if (UserController.checkUserPassword(txtUsername.getText(), txtPassword.getText())) {
                 labInfo.setText("Password matched");
                 App.setRoot("main-plane");
@@ -31,7 +32,7 @@ public class UserLoginViewHandler {
     }
 
     public void pressCreateAccount(ActionEvent actionEvent) throws IOException {
-        App.setRoot("users-view");
+        App.setRoot("user-create-view");
     }
 
     public void pressForgetPassword(ActionEvent actionEvent) throws IOException {

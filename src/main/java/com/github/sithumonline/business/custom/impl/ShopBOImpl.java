@@ -134,7 +134,7 @@ public class ShopBOImpl implements ShopBO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             shopRepository.setSession(session);
-            String sqlQuery = String.format("SELECT ur FROM %s ur WHERE %s", "Shop", logic);
+            String sqlQuery = String.format("SELECT ur FROM %s ur WHERE %s", "Shops", logic);
             Query query = session.createQuery(sqlQuery);
             List<Shops> shopList = query.list();
 

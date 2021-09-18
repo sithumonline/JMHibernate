@@ -1,23 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.MainPlaneHandler">
-   <children>
-      <Button fx:id="butUsersView" layoutX="73.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToViewUsers" prefHeight="26.0" prefWidth="125.0" text="View Users" />
-      <Button fx:id="butUsersSearch" layoutX="73.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSearchUsers" prefHeight="26.0" prefWidth="125.0" text="Search User" />
-      <Button layoutX="229.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToBeneficiaryLists" text="Beneficiary Lists" />
-      <Button fx:id="butEvent" layoutX="229.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToEventView" text="Event" />
-      <Button layoutX="379.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToSocietyView" text="Society" />
-      <Button layoutX="381.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToCropView" text="Crop" />
-      <Button layoutX="464.0" layoutY="140.0" mnemonicParsing="false" onAction="#switchToShopView" text="Shop" />
-      <Button layoutX="73.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToFamilyView" prefHeight="26.0" prefWidth="125.0" text="Family" />
-      <Button layoutX="226.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToPersonView" prefHeight="26.0" prefWidth="125.0" text="Person" />
-      <Button layoutX="381.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToHomeView" text="Home" />
-      <Button layoutX="464.0" layoutY="106.0" mnemonicParsing="false" onAction="#switchToLoginView" text="Login" />
-      <Button layoutX="459.0" layoutY="61.0" mnemonicParsing="false" onAction="#pressProfile" text="Profile" />
-      <ComboBox fx:id="comProfileList" layoutX="292.0" layoutY="61.0" prefWidth="150.0" />
-      <Label fx:id="labInfo" layoutX="333.0" layoutY="218.0" prefHeight="16.0" prefWidth="190.0" />
-   </children>
+<AnchorPane id="AnchorPane" minHeight="585.0" minWidth="550.0" prefHeight="585.0" prefWidth="1090.0" style="-fx-background-color: #ecf0f1;" styleClass="mainFxmlClass" stylesheets="@function-style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.sithumonline.view.handler.MainPlaneHandler">
+<stylesheets>
+   <URL value="@function-style.css" />
+   <URL value="@button-style.css" />
+</stylesheets>
+<children>
+   <Text fill="#1473e6" fontSmoothingType="LCD" layoutX="25.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu" textAlignment="LEFT">
+      <font>
+         <Font name="Calibri Bold" size="46.0" />
+      </font>
+   </Text>
+   <Label layoutY="505.0" opacity="0.9" prefHeight="80.0" prefWidth="1090.0" style="-fx-background-color: #1b76ff;" />
+
+   <JFXButton buttonType="RAISED" cache="true" contentDisplay="TOP" layoutX="186.0" layoutY="419.0" onAction="#switchToEventView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6;" styleClass="JFXButton" text="Events" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="24.0" />
+      </font>
+   </JFXButton>
+
+   <JFXButton buttonType="RAISED" layoutX="763.0" layoutY="419.0" onAction="#switchToSocietyView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6;" styleClass="JFXButton" text="Societies" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="470.0" layoutY="419.0" onAction="#switchToCropView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Crops" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="873.0" layoutY="230.0" onAction="#switchToShopView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Shops" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="317.0" layoutY="230.0" onAction="#switchToFamilyView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Families" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="36.0" layoutY="230.0" onAction="#switchToPersonView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Persons" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="607.0" layoutY="230.0" onAction="#switchToHomeView" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Home" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="978.0" layoutY="36.0" onAction="#switchToLoginView" prefHeight="60.0" prefWidth="92.0" style="-fx-background-color: #820505; " styleClass="JFXButton" text="Logout" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXButton buttonType="RAISED" layoutX="822.0" layoutY="36.0" onAction="#pressProfile" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #1473e6; " styleClass="JFXButton" text="Profile" textFill="WHITE">
+      <font>
+         <Font name="Calibri Bold" size="16.0" />
+      </font>
+   </JFXButton>
+   <JFXComboBox fx:id="comProfileList" layoutX="587.0" layoutY="36.0" prefHeight="60.0" prefWidth="222.0" />
+
+   <Label fx:id="labInfo" layoutX="381.0" layoutY="47.0" prefHeight="38.0" prefWidth="179.0" textFill="RED">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+   </Label>
+
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="226.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-event-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="357.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-family-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="510.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-flax-seeds-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="913.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-grocery-store-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="647.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-home-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="76.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-standing-man-96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="803.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../image/icons8-user-groups-96.png" />
+      </image>
+   </ImageView>
+
+</children>
 </AnchorPane>
