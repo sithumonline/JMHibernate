@@ -41,18 +41,134 @@ public class CropViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtCropType.getText().isEmpty() && txtNumberOfAcres.getText().isEmpty() && txtNumberOfCultivators.getText().isEmpty() && txtEstimatedFertilizer.getText().isEmpty() && txtReceivedFertilize.getText().isEmpty())) {
+        if (!validateCropType() | !validateAcres() | !validateCultivators() | !validateEstFertilizer() | !validateRecFertilizer()) {
+            txtCropType.setOnMouseClicked(event -> {
+                txtCropType.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtCropType.setText("");
+            });
+            txtNumberOfAcres.setOnMouseClicked(event -> {
+                txtNumberOfAcres.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtNumberOfAcres.setText("");
+            });
+            txtNumberOfCultivators.setOnMouseClicked(event -> {
+                txtNumberOfCultivators.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtNumberOfCultivators.setText("");
+            });
+            txtEstimatedFertilizer.setOnMouseClicked(event -> {
+                txtEstimatedFertilizer.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtEstimatedFertilizer.setText("");
+            });
+            txtReceivedFertilize.setOnMouseClicked(event -> {
+                txtReceivedFertilize.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtReceivedFertilize.setText("");
+            });
+            return;
+        } else {
+            //labInfo.setText("TextField is empty");
             CropCultivation cropCultivation = new CropCultivation(txtCropType.getText(), Integer.parseInt(txtNumberOfAcres.getText()), Integer.parseInt(txtNumberOfCultivators.getText()), Integer.parseInt(txtEstimatedFertilizer.getText()), Integer.parseInt(txtReceivedFertilize.getText()));
             CropCultivationController.addCropCultivation(cropCultivation);
             labInfo.setText("CropCultivation added");
             showCropCultivation();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateCropType(){
+        String val = txtCropType.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtCropType.setText("Cannot be empty");
+            txtCropType.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtCropType.setText("Must have only letters");
+            txtCropType.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateAcres(){
+        String val = txtNumberOfAcres.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtNumberOfAcres.setText("Cannot be empty");
+            txtNumberOfAcres.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtNumberOfAcres.setText("Must have only Numbers");
+            txtNumberOfAcres.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateCultivators(){
+        String val = txtNumberOfCultivators.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtNumberOfCultivators.setText("Cannot be empty");
+            txtNumberOfCultivators.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtNumberOfCultivators.setText("Must have only Numbers");
+            txtNumberOfCultivators.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateEstFertilizer(){
+        String val = txtEstimatedFertilizer.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtEstimatedFertilizer.setText("Cannot be empty");
+            txtEstimatedFertilizer.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtEstimatedFertilizer.setText("Must have only Numbers");
+            txtEstimatedFertilizer.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateRecFertilizer(){
+        String val = txtReceivedFertilize.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtReceivedFertilize.setText("Cannot be empty");
+            txtReceivedFertilize.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtReceivedFertilize.setText("Must have only Numbers");
+            txtReceivedFertilize.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtID.getText().isEmpty() && txtCropType.getText().isEmpty() && txtNumberOfAcres.getText().isEmpty() && txtNumberOfCultivators.getText().isEmpty() && txtEstimatedFertilizer.getText().isEmpty() && txtReceivedFertilize.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtCropType.getText().isEmpty() || txtNumberOfAcres.getText().isEmpty() || txtNumberOfCultivators.getText().isEmpty() || txtEstimatedFertilizer.getText().isEmpty() || txtReceivedFertilize.getText().isEmpty())) {
             CropCultivation cropCultivation = new CropCultivation(Integer.parseInt(txtID.getText()), txtCropType.getText(), Integer.parseInt(txtNumberOfAcres.getText()), Integer.parseInt(txtNumberOfCultivators.getText()), Integer.parseInt(txtEstimatedFertilizer.getText()), Integer.parseInt(txtReceivedFertilize.getText()));
             CropCultivationController.updateCropCultivation(cropCultivation);
             labInfo.setText("CropCultivation updated");

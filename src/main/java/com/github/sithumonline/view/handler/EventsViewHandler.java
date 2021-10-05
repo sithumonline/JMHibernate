@@ -1,6 +1,8 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.HomeController;
+import com.github.sithumonline.entity.Home;
 import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.EventController;
 import com.github.sithumonline.entity.Event;
@@ -41,18 +43,134 @@ public class EventsViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())) {
+        if (!validateEventName() | !validateVenue() | !validateDate() | !validateOrganizer() | !validateSponsorNo()) {
+            txtName.setOnMouseClicked(event -> {
+                txtName.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtName.setText("");
+            });
+            txtVenue.setOnMouseClicked(event -> {
+                txtVenue.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtVenue.setText("");
+            });
+            txtDate.setOnMouseClicked(event -> {
+                txtDate.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtDate.setText("");
+            });
+            txtOrganizer.setOnMouseClicked(event -> {
+                txtOrganizer.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtOrganizer.setText("");
+            });
+            txtNumberOfSponsorships.setOnMouseClicked(event -> {
+                txtNumberOfSponsorships.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtNumberOfSponsorships.setText("");
+            });
+            return;
+        } else {
+            //labInfo.setText("TextField is empty");
             Event event = new Event(txtName.getText(), txtVenue.getText(), txtDate.getText(), txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
             EventController.addEvent(event);
             labInfo.setText("Event added");
             showEvent();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateEventName(){
+        String val = txtName.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtName.setText("Cannot be empty");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtName.setText("Must have only letters");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateVenue(){
+        String val = txtVenue.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtVenue.setText("Cannot be empty");
+            txtVenue.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtVenue.setText("Must have only letters");
+            txtVenue.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateOrganizer(){
+        String val = txtOrganizer.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtOrganizer.setText("Cannot be empty");
+            txtOrganizer.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtOrganizer.setText("Must have only letters");
+            txtOrganizer.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateSponsorNo(){
+        String val = txtNumberOfSponsorships.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtNumberOfSponsorships.setText("Cannot be empty");
+            txtNumberOfSponsorships.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtNumberOfSponsorships.setText("Must have only Numbers");
+            txtNumberOfSponsorships.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateDate(){
+        String val = txtDate.getText();
+        String pattern = "^[0-9/]+$";
+
+        if(val.isEmpty()) {
+            txtDate.setText("Cannot be empty");
+            txtDate.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtDate.setText("Must have only Numbers");
+            txtDate.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtID.getText().isEmpty() && txtName.getText().isEmpty() && txtVenue.getText().isEmpty() && txtDate.getText().isEmpty() && txtOrganizer.getText().isEmpty() && txtNumberOfSponsorships.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtName.getText().isEmpty() || txtVenue.getText().isEmpty() || txtDate.getText().isEmpty() || txtOrganizer.getText().isEmpty() || txtNumberOfSponsorships.getText().isEmpty())) {
             Event event = new Event(txtID.getText(), txtName.getText(), txtVenue.getText(), txtDate.getText(), txtOrganizer.getText(), Integer.parseInt(txtNumberOfSponsorships.getText()));
             EventController.updateEvent(event);
             labInfo.setText("Event updated");

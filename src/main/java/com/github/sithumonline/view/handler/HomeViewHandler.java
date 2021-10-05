@@ -1,6 +1,8 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.FamilyController;
+import com.github.sithumonline.entity.Family;
 import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.HomeController;
 import com.github.sithumonline.entity.Home;
@@ -41,18 +43,134 @@ public class HomeViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtHousingNumber.getText().isEmpty() && txtConstructionsStatus.getText().isEmpty() && txtAreaOfTheHouse.getText().isEmpty() && txtAddress.getText().isEmpty() && txtElectricityAndWaterSupply.getText().isEmpty())) {
+        if (!validateHousingNo() | !validateConsStat() | !validateArea() | !validateAddress() | !validateElectricity()) {
+            txtHousingNumber.setOnMouseClicked(event -> {
+                txtHousingNumber.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtHousingNumber.setText("");
+            });
+            txtConstructionsStatus.setOnMouseClicked(event -> {
+                txtConstructionsStatus.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtConstructionsStatus.setText("");
+            });
+            txtAreaOfTheHouse.setOnMouseClicked(event -> {
+                txtAreaOfTheHouse.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtAreaOfTheHouse.setText("");
+            });
+            txtAddress.setOnMouseClicked(event -> {
+                txtAddress.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtAddress.setText("");
+            });
+            txtElectricityAndWaterSupply.setOnMouseClicked(event -> {
+                txtElectricityAndWaterSupply.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtElectricityAndWaterSupply.setText("");
+            });
+            return;
+        } else {
+            //labInfo.setText("TextField is empty");
             Home home = new Home(Integer.parseInt(txtHousingNumber.getText()), txtConstructionsStatus.getText(), Integer.parseInt(txtAreaOfTheHouse.getText()), txtAddress.getText(), txtElectricityAndWaterSupply.getText());
             HomeController.addHome(home);
             labInfo.setText("Home added");
             showHome();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateHousingNo(){
+        String val = txtHousingNumber.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtHousingNumber.setText("Cannot be empty");
+            txtHousingNumber.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtHousingNumber.setText("Must have only Numbers");
+            txtHousingNumber.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateConsStat(){
+        String val = txtConstructionsStatus.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtConstructionsStatus.setText("Cannot be empty");
+            txtConstructionsStatus.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtConstructionsStatus.setText("Must have only Letters");
+            txtConstructionsStatus.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateArea(){
+        String val = txtAreaOfTheHouse.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtAreaOfTheHouse.setText("Cannot be empty");
+            txtAreaOfTheHouse.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtAreaOfTheHouse.setText("Must have only Numbers");
+            txtAreaOfTheHouse.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateElectricity(){
+        String val = txtElectricityAndWaterSupply.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtElectricityAndWaterSupply.setText("Cannot be empty");
+            txtElectricityAndWaterSupply.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtElectricityAndWaterSupply.setText("Must have only letters");
+            txtElectricityAndWaterSupply.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateAddress(){
+        String val = txtAddress.getText();
+        String pattern = "^[a-zA-Z,]+$";
+
+        if(val.isEmpty()) {
+            txtAddress.setText("Cannot be empty");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtAddress.setText("Must have only letters");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtHousingNumber.getText().isEmpty() && txtConstructionsStatus.getText().isEmpty() && txtAreaOfTheHouse.getText().isEmpty() && txtAddress.getText().isEmpty() && txtElectricityAndWaterSupply.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtHousingNumber.getText().isEmpty() || txtConstructionsStatus.getText().isEmpty() || txtAreaOfTheHouse.getText().isEmpty() || txtAddress.getText().isEmpty() || txtElectricityAndWaterSupply.getText().isEmpty())) {
             Home home = new Home(Integer.parseInt(txtID.getText()), Integer.parseInt(txtHousingNumber.getText()), txtConstructionsStatus.getText(), Integer.parseInt(txtAreaOfTheHouse.getText()), txtAddress.getText(), txtElectricityAndWaterSupply.getText());
             HomeController.updateHome(home);
             labInfo.setText("Home updated");
