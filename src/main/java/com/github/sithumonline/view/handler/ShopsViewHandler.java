@@ -1,6 +1,8 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.PersonController;
+import com.github.sithumonline.entity.Person;
 import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.ShopController;
 import com.github.sithumonline.entity.Shops;
@@ -41,18 +43,134 @@ public class ShopsViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtName.getText().isEmpty() && txtType.getText().isEmpty() && txtRegistrationNumber.getText().isEmpty() && txtOwnersName.getText().isEmpty() && txtAddress.getText().isEmpty())) {
+        if (!validateName() | !validateType() | !validateRegNo() | !validateOwnerName() | !validateAddress()) {
+            txtName.setOnMouseClicked(event -> {
+                txtName.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtName.setText("");
+            });
+            txtRegistrationNumber.setOnMouseClicked(event -> {
+                txtRegistrationNumber.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtRegistrationNumber.setText("");
+            });
+            txtOwnersName.setOnMouseClicked(event -> {
+                txtOwnersName.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtOwnersName.setText("");
+            });
+            txtAddress.setOnMouseClicked(event -> {
+                txtAddress.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtAddress.setText("");
+            });
+            txtType.setOnMouseClicked(event -> {
+                txtType.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtType.setText("");
+            });
+            return;
+        } else {
+            //labInfo.setText("TextField is empty");
             Shops shop = new Shops(txtName.getText(), txtRegistrationNumber.getText(), txtOwnersName.getText(), txtAddress.getText(), txtType.getText());
             ShopController.addShop(shop);
             labInfo.setText("Shop added");
             showShop();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateName(){
+        String val = txtName.getText();
+        String pattern = "^[a-zA-Z.]+$";
+
+        if(val.isEmpty()) {
+            txtName.setText("Cannot be empty");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtName.setText("Must have only letters");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateRegNo(){
+        String val = txtRegistrationNumber.getText();
+        String pattern = "^[a-zA-Z0-9]+$";
+
+        if(val.isEmpty()) {
+            txtRegistrationNumber.setText("Cannot be empty");
+            txtRegistrationNumber.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtRegistrationNumber.setText("Must have only letters");
+            txtRegistrationNumber.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateType(){
+        String val = txtType.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtType.setText("Cannot be empty");
+            txtType.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtType.setText("Must have only letters");
+            txtType.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateOwnerName(){
+        String val = txtOwnersName.getText();
+        String pattern = "^[a-zA-Z.]+$";
+
+        if(val.isEmpty()) {
+            txtOwnersName.setText("Cannot be empty");
+            txtOwnersName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtOwnersName.setText("Must have only letters");
+            txtOwnersName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateAddress(){
+        String val = txtAddress.getText();
+        String pattern = "^[a-zA-Z0-9,/]+$";
+
+        if(val.isEmpty()) {
+            txtAddress.setText("Cannot be empty");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtAddress.setText("Must have only letters");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtID.getText().isEmpty() && txtName.getText().isEmpty() && txtType.getText().isEmpty() && txtRegistrationNumber.getText().isEmpty() && txtOwnersName.getText().isEmpty() && txtAddress.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtName.getText().isEmpty() || txtType.getText().isEmpty() || txtRegistrationNumber.getText().isEmpty() || txtOwnersName.getText().isEmpty() || txtAddress.getText().isEmpty())) {
             Shops shop = new Shops(Integer.parseInt(txtID.getText()), txtName.getText(), txtRegistrationNumber.getText(), txtOwnersName.getText(), txtAddress.getText(), txtType.getText());
             ShopController.updateShop(shop);
             labInfo.setText("Shop updated");

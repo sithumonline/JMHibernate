@@ -41,18 +41,135 @@ public class PersonViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtName.getText().isEmpty() && txtNIC.getText().isEmpty() && txtGender.getText().isEmpty() && txtAddress.getText().isEmpty() && txtEmploymentStats.getText().isEmpty())) {
+        if (!validateName() | !validateNIC() | !validateGender() | !validateEmployeeStat() | !validateAddress()) {
+            txtName.setOnMouseClicked(event -> {
+                txtName.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtName.setText("");
+            });
+            txtNIC.setOnMouseClicked(event -> {
+                txtNIC.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtNIC.setText("");
+            });
+            txtGender.setOnMouseClicked(event -> {
+                txtGender.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtGender.setText("");
+            });
+            txtAddress.setOnMouseClicked(event -> {
+                txtAddress.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtAddress.setText("");
+            });
+            txtEmploymentStats.setOnMouseClicked(event -> {
+                txtEmploymentStats.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtEmploymentStats.setText("");
+            });
+            return;
+        }
+        else {
+            //labInfo.setText("TextField is empty");
             Person person = new Person(txtName.getText(), txtNIC.getText(), txtGender.getText(), txtAddress.getText(), txtEmploymentStats.getText());
             PersonController.addPerson(person);
             labInfo.setText("Person added");
             showPerson();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateName(){
+        String val = txtName.getText();
+        String pattern = "^[a-zA-Z.]+$";
+
+        if(val.isEmpty()) {
+            txtName.setText("Cannot be empty");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtName.setText("Must have only letters");
+            txtName.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateNIC(){
+        String val = txtNIC.getText();
+        String pattern = "^[a-zA-Z0-9]+$";
+
+        if(val.isEmpty()) {
+            txtNIC.setText("Cannot be empty");
+            txtNIC.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtNIC.setText("Must have only letters");
+            txtNIC.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateGender(){
+        String val = txtGender.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtGender.setText("Cannot be empty");
+            txtGender.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtGender.setText("Must have only letters");
+            txtGender.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateEmployeeStat(){
+        String val = txtEmploymentStats.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtEmploymentStats.setText("Cannot be empty");
+            txtEmploymentStats.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtEmploymentStats.setText("Must have only letters");
+            txtEmploymentStats.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateAddress(){
+        String val = txtAddress.getText();
+        String pattern = "^[a-zA-Z0-9,/]+$";
+
+        if(val.isEmpty()) {
+            txtAddress.setText("Cannot be empty");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtAddress.setText("Must have only letters");
+            txtAddress.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtID.getText().isEmpty() && txtName.getText().isEmpty() && txtNIC.getText().isEmpty() && txtGender.getText().isEmpty() && txtAddress.getText().isEmpty() && txtEmploymentStats.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtName.getText().isEmpty() || txtNIC.getText().isEmpty() || txtGender.getText().isEmpty() || txtAddress.getText().isEmpty() || txtEmploymentStats.getText().isEmpty())) {
             Person person = new Person(Integer.parseInt(txtID.getText()), txtName.getText(), txtNIC.getText(), txtGender.getText(), txtAddress.getText(), txtEmploymentStats.getText());
             PersonController.updatePerson(person);
             labInfo.setText("Person updated");

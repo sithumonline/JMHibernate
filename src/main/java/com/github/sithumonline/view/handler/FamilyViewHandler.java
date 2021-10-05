@@ -1,6 +1,8 @@
 package com.github.sithumonline.view.handler;
 
 import com.github.sithumonline.App;
+import com.github.sithumonline.controller.ShopController;
+import com.github.sithumonline.entity.Shops;
 import com.github.sithumonline.utility.WriterCsvXlxs;
 import com.github.sithumonline.controller.FamilyController;
 import com.github.sithumonline.entity.Family;
@@ -41,18 +43,134 @@ public class FamilyViewHandler implements Initializable {
     private WriterCsvXlxs writerCsvXlxs = new WriterCsvXlxs();
 
     public void pressInsert() throws Exception {
-        if (!(txtSurname.getText().isEmpty() && txtNumberOfMembers.getText().isEmpty() && txtTotalIncome.getText().isEmpty() && txtReligion.getText().isEmpty() && txtHeadOfTheFamily.getText().isEmpty())) {
+        if (!validateSurname() | !validateNumMembers() | !validateIncome() | !validateReligion() | !validateFamilyHead()) {
+            txtSurname.setOnMouseClicked(event -> {
+                txtSurname.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtSurname.setText("");
+            });
+            txtNumberOfMembers.setOnMouseClicked(event -> {
+                txtNumberOfMembers.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtNumberOfMembers.setText("");
+            });
+            txtTotalIncome.setOnMouseClicked(event -> {
+                txtTotalIncome.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtTotalIncome.setText("");
+            });
+            txtReligion.setOnMouseClicked(event -> {
+                txtReligion.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtReligion.setText("");
+            });
+            txtHeadOfTheFamily.setOnMouseClicked(event -> {
+                txtHeadOfTheFamily.setStyle("-fx-text-fill: #1473e6; -fx-font-size: 16px;");
+                txtHeadOfTheFamily.setText("");
+            });
+            return;
+        } else {
+            //labInfo.setText("TextField is empty");
             Family family = new Family(txtSurname.getText(), Integer.parseInt(txtNumberOfMembers.getText()), Integer.parseInt(txtTotalIncome.getText()), txtReligion.getText(), txtHeadOfTheFamily.getText());
             FamilyController.addFamily(family);
             labInfo.setText("Family added");
             showFamily();
-        } else {
-            labInfo.setText("TextField is empty");
+        }
+    }
+
+    private Boolean validateSurname(){
+        String val = txtSurname.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtSurname.setText("Cannot be empty");
+            txtSurname.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtSurname.setText("Must have only letters");
+            txtSurname.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateNumMembers(){
+        String val = txtNumberOfMembers.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtNumberOfMembers.setText("Cannot be empty");
+            txtNumberOfMembers.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtNumberOfMembers.setText("Must have only Numbers");
+            txtNumberOfMembers.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateIncome(){
+        String val = txtTotalIncome.getText();
+        String pattern = "^[0-9]+$";
+
+        if(val.isEmpty()) {
+            txtTotalIncome.setText("Cannot be empty");
+            txtTotalIncome.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtTotalIncome.setText("Must have only Numbers");
+            txtTotalIncome.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateReligion(){
+        String val = txtReligion.getText();
+        String pattern = "^[a-zA-Z]+$";
+
+        if(val.isEmpty()) {
+            txtReligion.setText("Cannot be empty");
+            txtReligion.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtReligion.setText("Must have only letters");
+            txtReligion.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private Boolean validateFamilyHead(){
+        String val = txtHeadOfTheFamily.getText();
+        String pattern = "^[a-zA-Z.]+$";
+
+        if(val.isEmpty()) {
+            txtHeadOfTheFamily.setText("Cannot be empty");
+            txtHeadOfTheFamily.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else if (!val.matches(pattern)){
+            txtHeadOfTheFamily.setText("Must have only letters");
+            txtHeadOfTheFamily.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
     public void pressUpdate() throws Exception {
-        if (!(txtID.getText().isEmpty() && txtSurname.getText().isEmpty() && txtNumberOfMembers.getText().isEmpty() && txtTotalIncome.getText().isEmpty() && txtReligion.getText().isEmpty() && txtHeadOfTheFamily.getText().isEmpty())) {
+        if (!(txtID.getText().isEmpty() || txtSurname.getText().isEmpty() || txtNumberOfMembers.getText().isEmpty() || txtTotalIncome.getText().isEmpty() || txtReligion.getText().isEmpty() || txtHeadOfTheFamily.getText().isEmpty())) {
             Family family = new Family(Integer.parseInt(txtID.getText()), txtSurname.getText(), Integer.parseInt(txtNumberOfMembers.getText()), Integer.parseInt(txtTotalIncome.getText()), txtReligion.getText(), txtHeadOfTheFamily.getText());
             FamilyController.updateFamily(family);
             labInfo.setText("Family updated");
